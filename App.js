@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Login from './Pages/login.js'
 import Register from './Pages/register.js'
 import Home from './Pages/home.js'
+import Navbar from './Layout/navbar.js'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
@@ -13,6 +14,7 @@ const Stack = createStackNavigator();
 export default function App() {
   
   return (
+    <>
     <NavigationContainer>
     <Stack.Navigator>
     <Stack.Screen
@@ -29,6 +31,8 @@ export default function App() {
     />
     </Stack.Navigator>
   </NavigationContainer>
+  {/* <Navbar/> */}
+  </>
   );
 }
 

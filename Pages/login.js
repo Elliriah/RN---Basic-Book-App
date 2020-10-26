@@ -6,7 +6,7 @@ const wallpaper = { uri: "https://i.pinimg.com/originals/6f/11/c5/6f11c51b8efb2c
 
 const styles = StyleSheet.create({
   input: {
-    width: 350,
+    width: 395,
     height: 55,
     backgroundColor: 'white',
     margin: 10,
