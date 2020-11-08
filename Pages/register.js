@@ -49,9 +49,8 @@ function RegisterScreen(props) {
   return (
       <>
    <View style={styles.container}>
-   <ImageBackground source={wallpaper} style={styles.image}>
+   <ImageBackground source={require('../public/wallpaper.jpg')} style={styles.image}>
       <View style={styles.cardOpacity}>
-   {/* <Text h1 style={{fontSize: 30, marginBottom: 20}}>Se connecter</Text> */}
         <TextInput
           style={styles.input}
           placeholder='Username'

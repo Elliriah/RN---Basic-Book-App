@@ -3,19 +3,31 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Login from './Pages/login.js'
 import Register from './Pages/register.js'
+import Profil from './Pages/profil.js'
 import Home from './Pages/home.js'
 import Navbar from './Layout/navbar.js'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import 'react-native-gesture-handler';
-
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   
   return (
     <>
-    <NavigationContainer>
+        <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Login" component={Login}/>
+        <Tab.Screen name="Register" component={Register} />
+        <Tab.Screen name="Home" component={Home}/>
+        <Tab.Screen name="Profil" component={Profil} />
+      </Tab.Navigator>
+      {/* <Tab.Navigator>
+        <Tab.Screen name="Home" component={Home} />
+      </Tab.Navigator> */}
+    </NavigationContainer>
+    {/* <NavigationContainer>
     <Stack.Navigator>
     <Stack.Screen
             name="Login"
@@ -30,7 +42,7 @@ export default function App() {
             component={Register}
     />
     </Stack.Navigator>
-  </NavigationContainer>
+  </NavigationContainer> */}
   {/* <Navbar/> */}
   </>
   );
