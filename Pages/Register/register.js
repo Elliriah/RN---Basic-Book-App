@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import {ImageBackground, View, StyleSheet, Button, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-// const wallpaper = { uri: "../public/wallpaper.jpg"};
+const wallpaper = { uri: "https://i.pinimg.com/originals/6f/11/c5/6f11c51b8efb2c82af6c605e9321e766.jpg" };
+
 const styles = StyleSheet.create({
   input: {
     width: 395,
-    height: 55,
+    // height: 55,
     backgroundColor: 'white',
     margin: 10,
     padding: 8,
@@ -26,8 +27,8 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   fixToText: {
-    // flexDirection: 'row',
-    // justifyContent: 'space-between',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },  
   buttonSubmit: {
     alignSelf: 'flex-end',
@@ -38,29 +39,17 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     marginTop: 20,
     backgroundColor: 'rgba(93,69,59,0.48)'
-  },
+  }
 });   
 
 
-function LoginScreen(props) {
+function RegisterScreen(props) {
     const navigation = useNavigation()
 
   return (
       <>
    <View style={styles.container}>
-   <ImageBackground source={require('../public/wallpaper.jpg')} style={styles.image}>
-   <View w style={styles.fixToText}>
-    <View style={[styles.buttonSubmit]}>
-   <Button
-          title="S'inscrire "
-          color= "#5D453B"
-          style={styles.buttonSubmit}
-          onPress={() =>
-            navigation.navigate('Register')
-          }
-        />
-        </View>
-      </View>
+   <ImageBackground source={require('../../public/wallpaper.jpg')} style={styles.image}>
       <View style={styles.cardOpacity}>
         <TextInput
           style={styles.input}
@@ -76,7 +65,7 @@ function LoginScreen(props) {
           placeholderTextColor='black'
         />
      <Button
-  title="Se connecter "
+  title="S'inscrire "
   color="#5D453B"
   onPress={() =>
     navigation.navigate('Home')
@@ -90,4 +79,5 @@ function LoginScreen(props) {
   );
 };
 
-export default LoginScreen;
+
+export default RegisterScreen;

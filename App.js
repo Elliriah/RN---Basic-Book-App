@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Login from './Pages/login.js'
-import Register from './Pages/register.js'
-import Profil from './Pages/profil.js'
-import Home from './Pages/home.js'
+import Login from './Pages/Login/login.js'
+import Register from './Pages/Register/register.js'
+import Profil from './Pages/Profile/profil.js'
+import Home from './Pages/Home/home.js'
 import Navbar from './Layout/navbar.js'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
