@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, ScrollView, StyleSheet, Text, View, Image, TouchableOpacity} from "react-native";
-import Modal, { ModalContent } from 'react-native-modal';
 
 
 
@@ -59,13 +58,11 @@ const styles = StyleSheet.create({
   }
 });   
 
-function BookDialog(props) {
+function FavorisScreen(props) {
 const bookOne = { uri: "https://i.pinimg.com/originals/6f/11/c5/6f11c51b8efb2c82af6c605e9321e766.jpg" };
 
 
   return (
-        <View>
-   <Modal isVisible={props.display} onBackdropPress={() => {props.onClose()}}>
          <View style={styles.cardOpacity}>
            <View style={styles.bookCard}>
           <Text style={{color: "black", fontSize: 50, left: 30, top: 20}}>Titre</Text>
@@ -93,9 +90,7 @@ const bookOne = { uri: "https://i.pinimg.com/originals/6f/11/c5/6f11c51b8efb2c82
         </View>
         <Button title="Fermer" onPress={() => {props.onClose()}} />
         </View>
-      </Modal>
-    </View>
   );
 }
 
-export default BookDialog;
+export default FavorisScreen;
