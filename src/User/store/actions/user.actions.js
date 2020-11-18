@@ -14,7 +14,10 @@ export const authUser = (payload) => {
         payload: true,
       });
     }).catch((error) => {
-      console.log(error);
+      dispatch({
+        type: AUTH_USER,
+        payload: false,
+      });
     });
   };
 };

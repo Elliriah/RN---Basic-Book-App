@@ -69,7 +69,7 @@ function LoginScreen(props) {
 
   if (logged === true) {
     // redirectUser();
-    //return null;
+    // return null;
   }
   return (
     <>
