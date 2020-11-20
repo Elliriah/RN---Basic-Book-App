@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const AUTH_USER = '[USER] AUTH_USER';
 export const REGISTER_USER = '[USER] REGISTER_USER';
+export const LOGOUT_USER = '[USER] LOGOUT USER';
 
 export const authUser = (payload) => {
   console.log(payload);
@@ -21,6 +22,17 @@ export const authUser = (payload) => {
     });
   };
 };
+
+export const logoutUser = () => {
+
+  console.log("LOGOUUUUUUUUUUUUUUUUUUT");
+  return (dispatch) => {
+    dispatch({
+      type: LOGOUT_USER,
+      payload: false
+    })
+  }
+}
 
 export const registerUser = () => {
   console.log('REDUCER ON');

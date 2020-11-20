@@ -9,21 +9,23 @@ import Login from './src/User/login';
 import Register from './src/User/register';
 import Profil from './src/User/profil';
 import Home from './src/Media/home';
-import RouterComponent from './src/router/RouterComponent';
 import { store, persistor } from './src/store/configStore';
-import { useSelector } from 'react-redux';
+
 // const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-
-  console.log(persistor);
-  //const logged = useSelector((state) => state.userReducer.user.logged);
-
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-          <RouterComponent/>
+        <NavigationContainer>
+          <Tab.Navigator>
+            <Tab.Screen name="Login" component={Login} />
+            <Tab.Screen name="Register" component={Register} />
+            <Tab.Screen name="Home" component={Home} />
+            <Tab.Screen name="Profil" component={Profil} />
+          </Tab.Navigator>
+        </NavigationContainer>
       </PersistGate>
     </Provider>
   );

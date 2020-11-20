@@ -58,13 +58,13 @@ function LoginScreen(props) {
   const test = useSelector((state) => state.userReducer.user.entities);
   const logged = useSelector((state) => state.userReducer.user.logged);
   useEffect(() => {
-    dispatch(Actions.authUser({ identifier: 'midosol', password: 'test123' }));
+    //dispatch(Actions.authUser({ identifier: 'midosol', password: 'test123' }));
   }, []);
   console.log('LOGGEDssssss=', logged);
 
   async function redirectUser() {
-    const jumpToAction = TabActions.jumpTo('Home');
-    navigation.dispatch(jumpToAction);
+    //const jumpToAction = TabActions.jumpTo('Home');
+    //navigation.dispatch(jumpToAction);
   }
 
   if (logged === true) {
@@ -102,7 +102,7 @@ function LoginScreen(props) {
             <Button
               title="Se connecter "
               color="#5D453B"
-              onPress={() => navigation.navigate('Home')}
+              onPress={() => dispatch(Actions.authUser({ identifier: 'midosol', password: 'test123' }))}
               type="outline"
             />
           </View>
@@ -113,5 +113,4 @@ function LoginScreen(props) {
 }
 
 export default LoginScreen;
-// export default (withReducer('userModule', reducer)(LoginScreen));
-// export default LoginScreen;
+

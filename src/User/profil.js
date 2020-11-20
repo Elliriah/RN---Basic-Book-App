@@ -5,6 +5,8 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { Avatar, Accessory } from 'react-native-elements';
 import { TextInput } from 'react-native-paper';
+import * as Actions from './store/actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 const styles = StyleSheet.create({
   container: {
@@ -41,6 +43,7 @@ const styles = StyleSheet.create({
 function ProfilScreen(props) {
   const [email, name, setText] = React.useState('');
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   return (
     <>
       <View style={[styles.container]}>
@@ -68,6 +71,12 @@ function ProfilScreen(props) {
           value="Eloïse Boyer"
           onChangeText={(name) => setText(name)}
         />
+         <Button
+              title="Se connecter "
+              color="#5D453B"
+              onPress={() => dispatch(Actions.logoutUser())}
+              type="outline"
+            />
         <View style={[styles.inputProfilDeconnecter]}>
           <Button
             title="Se déconnecter "

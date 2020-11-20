@@ -23,6 +23,13 @@ const userReducer = (state = initialState, action) => {
         entities: action.payload,
       };
     }
+    case Actions.LOGOUT_USER:
+    { 
+      return {
+        ...state,
+        logged: action.payload
+      };
+    }
     default:
     {
       return state;
