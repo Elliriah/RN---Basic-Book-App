@@ -13,8 +13,10 @@ export const authUser = (payload) => {
       dispatch({
         type: AUTH_USER,
         payload: true,
+        token: response.data.jwt
       });
     }).catch((error) => {
+      response.log(error);
       dispatch({
         type: AUTH_USER,
         payload: false,

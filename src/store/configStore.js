@@ -15,9 +15,9 @@ const persistConfig = {
     'userReducer',
   ],
   // Blacklist (Don't Save Specific Reducers)
-//    blacklist: [
-//      'userReducer',
-//    ],
+    blacklist: [
+      'bookReducer',
+    ],
 };
 
 // Middleware: Redux Persist Persisted Reducer

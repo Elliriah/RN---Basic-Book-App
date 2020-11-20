@@ -3,6 +3,7 @@ import * as Actions from '../actions';
 const initialState = {
   entities: null,
   logged: false,
+  token: null
 };
 
 const userReducer = (state = initialState, action) => {
@@ -13,6 +14,7 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         logged: action.payload,
+        token: action.token
       };
     }
     case Actions.REGISTER_USER:
