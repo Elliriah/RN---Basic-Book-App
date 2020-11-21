@@ -5,7 +5,7 @@ import {
 // import { useNavigation } from '@react-navigation/native';
 import { Searchbar } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
-import BookDialog from '../../Dialog/Book/bookDialog';
+import BookDialog from './bookDialog';
 import * as Actions from './store/actions';
 
 const styles = StyleSheet.create({
@@ -13,9 +13,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    left: "3%",
-    top: "4%",
-    alignItems: 'flex-start' // if you want to fill rows left to right
+    left: '3%',
+    top: '4%',
+    alignItems: 'flex-start', // if you want to fill rows left to right
   },
   item: {
     width: '50%', // is 50% of container width
@@ -23,11 +23,20 @@ const styles = StyleSheet.create({
   searchbarSize: {
     width: 600,
     top: 30,
-    marginBottom: 20
+    marginBottom: 20,
   },
   listBook: {
-    top: 11
+    top: 11,
   },
+  imageHome : {
+    flex: 2,
+    justifyContent: 'space-between',
+    padding: 10,
+    borderWidth: 3,
+    borderColor: 'black',
+    width: 170,
+    height: 190
+  }
 });
 
 function HomeScreen() {
@@ -68,7 +77,10 @@ function HomeScreen() {
           <View key={keymap}>
             <TouchableHighlight onPress={() => onPressModal(element)}>
               <View>
-                <Image source={imgUrl} style={{ width: 170, height: 190 }} />
+                <Image
+                  source={imgUrl}
+                  style={styles.imageHome}
+                />
               </View>
             </TouchableHighlight>
           </View>
@@ -81,8 +93,8 @@ function HomeScreen() {
 
   return (
     <>
-      { (modalbool === true) ? 
-      <BookDialog display={modalbool} onClose={onCloseModal} data={data}/> : null }
+      { (modalbool === true)
+        ? <BookDialog display={modalbool} onClose={onCloseModal} data={data} /> : null }
       <Searchbar
         style={[styles.searchbarSize]}
         placeholder="Search"

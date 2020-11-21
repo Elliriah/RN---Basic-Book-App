@@ -33,7 +33,6 @@ export const logoutUser = () => (dispatch) => {
 };
 
 export const getUserInfo = (payload) => {
-
   const config = {
     headers: {
       Authorization: `Bearer ${payload}`,
@@ -42,7 +41,7 @@ export const getUserInfo = (payload) => {
   const result = axios.get('https://dark-nightmare-23481.herokuapp.com/users/me', config);
   return (dispatch) => {
     result.then((response) => {
-      console.log("GET RESPONSE====", response);
+      console.log('GET RESPONSE====', response);
       dispatch({
         type: UPDATE_USER,
         userInfo: response.data,
@@ -57,7 +56,7 @@ export const getUserInfo = (payload) => {
 };
 
 export const registerUser = (payload) => {
-  console.log("register");
+  console.log('register');
   console.log(payload);
   const result = axios.post('https://dark-nightmare-23481.herokuapp.com/auth/local/register', payload);
   return (dispatch) => {
@@ -71,7 +70,7 @@ export const registerUser = (payload) => {
       });
     }).catch((error) => {
       console.log(error);
-      console.log("?????????????")
+      console.log('?????????????');
       dispatch({
         type: AUTH_USER,
         payload: false,

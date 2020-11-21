@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, ScrollView, StyleSheet, Text, View, Image, TouchableHighlight} from "react-native";
 import Modal, { ModalContent } from 'react-native-modal';
 import { useDispatch, useSelector } from 'react-redux';
-import * as Actions from '../../src/Media/store/actions';
+import * as Actions from './store/actions';
 
 const styles = StyleSheet.create({
   input: {
@@ -43,9 +43,7 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   bookCard: {
-   marginRight: 50,
-   left: 110,
-   paddingBottom: 50,
+    // backgroundColor: "blue"
   },
   favorite_container: {
     alignItems: 'center', // Alignement des components enfants sur l'axe secondaire, X ici
@@ -56,6 +54,44 @@ const styles = StyleSheet.create({
     left: 50,
     top: 40,
     zIndex: 10
+  },
+  viewText : {
+    width: "100%", 
+    justifyContent: 'center', 
+    alignItems: 'center'
+  },
+  textTitre : {
+    color: "black", 
+    fontSize: 20
+  },
+  viewImage : {
+    width: "100%", 
+    justifyContent: 'center', 
+    alignItems: 'center'
+  },
+  imageBook : {
+    zIndex: -1, 
+    width: 200, 
+    height: 300, 
+    bottom: 2, 
+    paddingBottom: 2
+  },
+  viewOne : {
+    width: '100%', 
+    justifyContent: 'center', 
+    alignItems: 'center' 
+  },
+  viewDescription : {
+    width: '80%', 
+    justifyContent: 'center', 
+    alignItems: 'center'
+  },
+  textDescription : {
+    fontSize: 20
+  },
+  lineHr : {
+    borderBottomColor: 'gray',
+    borderBottomWidth: 2
   }
 });   
 
@@ -74,33 +110,39 @@ function BookDialog(props) {
     return (
           <View>
     <Modal isVisible={props.display} onBackdropPress={() => {props.onClose()}}>
+    <ScrollView>
+
           <View style={styles.cardOpacity}>
             <View style={styles.bookCard}>
-            <Text style={{color: "black", fontSize: 50, left: 30, top: 20}}>{props.data.title}</Text>
+            <TouchableHighlight
+          onPress={() => {props.onClose()}}>
+          <Image source={require('../../public/icon/close.png')} style = {styles.favorite_image} />          
+          </TouchableHighlight>
+          <View style={styles.viewText}>
+            <Text style={styles.textTitre}>{props.data.title}</Text>
+          </View>
             <TouchableHighlight
           style={styles.favorite_container}
           onPress={() => {addFavoris()}}>
-          <Image source={require('../../public/icon/favorite.png')} style = {styles.favorite_image} />          
-
+          <Image source={require('../../public/icon/favorite.png')} style = {styles.favorite_image} />
           </TouchableHighlight>
-            <Image source={{uri: props.data.img.url}} style={{zIndex: -1,right: 40, width: 250, height: 300}}/>
+          <View style={styles.viewImage}>
+            <Image source={{uri: props.data.img.url}} style={styles.imageBook}/>
+            <Button title="Favoris " />
+            <Button title="Suprrimer Favoris " />
+          </View>
             <View
-              style={{
-                borderBottomColor: 'gray',
-                borderBottomWidth: 1,
-                right: 80,
-                top: 15
-              }}/>
-            <View style={{width: '100%', right: 80}}>
-              <ScrollView>
-            <Text style={{color: "black", fontSize: 20, top: 20}}>
+              style={styles.lineHr}/>
+            <View style={styles.viewOne}>
+            <View style={styles.viewDescription}>
+            <Text style={styles.textDescription}>
               {props.data.description}
             </Text>
-            </ScrollView>
+            </View>
             </View>
           </View>
-          <Button title="Fermer" onPress={() => {props.onClose()}} />
           </View>
+          </ScrollView>
         </Modal>
       </View>
     )

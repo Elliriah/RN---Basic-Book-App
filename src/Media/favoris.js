@@ -5,7 +5,7 @@ import {
 // import { useNavigation } from '@react-navigation/native';
 import { Searchbar } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
-import BookDialog from '../../Dialog/Book/bookDialog';
+import BookDialog from './bookDialog';
 import * as Actions from './store/actions';
 
 const styles = StyleSheet.create({
@@ -26,6 +26,10 @@ const styles = StyleSheet.create({
   listBook: {
     top: 11,
   },
+  styleImage : {
+    width: 135, 
+    height: 170
+  }
 });
 
 function FavorisScreen() {
@@ -37,9 +41,9 @@ function FavorisScreen() {
   const [data, setData] = React.useState(null);
   const token = useSelector((state) => state.userReducer.user.token);
   const favoris = useSelector((state) => state.bookReducer.book.favoris);
-  console.log("Favoris===", favoris)
+  console.log('Favoris===', favoris);
   const user = useSelector((state) => state.userReducer.user);
-  var idUser = user.userInfo.user.id;
+  const idUser = user.userInfo.user.id;
 
   useEffect(() => {
     dispatch(Actions.getFavoris(token, idUser));
@@ -70,7 +74,7 @@ function FavorisScreen() {
           <View key={keymap}>
             <TouchableHighlight onPress={() => onPressModal(element.book)}>
               <View style={styles.item}>
-                <Image source={imgUrl} style={{ width: 135, height: 170 }} />
+                <Image source={imgUrl} style={styles.styleImage} />
               </View>
             </TouchableHighlight>
           </View>
@@ -78,14 +82,14 @@ function FavorisScreen() {
       });
       return booksDisplayer;
     }
-    console.log(favoris, "ISFAVORIS THE BEST ???");
+    console.log(favoris, 'ISFAVORIS THE BEST ???');
     return null;
-    });
+  });
 
   return (
     <>
-      { (modalbool === true) ? 
-      <BookDialog display={modalbool} onClose={onCloseModal} data={data}/> : null }
+      { (modalbool === true)
+        ? <BookDialog display={modalbool} onClose={onCloseModal} data={data} /> : null }
       <Searchbar
         style={[styles.searchbarSize]}
         placeholder="Search"

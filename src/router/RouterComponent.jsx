@@ -7,7 +7,7 @@ import Register from '../User/register';
 import Profil from '../User/profil';
 import Home from '../Media/home';
 import Favoris from '../Media/favoris';
-        
+
 const Tab = createBottomTabNavigator();
 
 function RouterComponent() {

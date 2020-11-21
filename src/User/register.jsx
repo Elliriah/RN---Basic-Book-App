@@ -54,12 +54,12 @@ function RegisterScreen() {
       <View style={styles.container}>
         <ImageBackground source={require('../../public/wallpaper.jpg')} style={styles.image}>
           <View style={styles.cardOpacity}>
-          <TextInput
+            <TextInput
               style={styles.input}
               placeholder="Username"
               autoCapitalize="none"
               placeholderTextColor="black"
-              onChangeText={value => setUsername(value)}
+              onChangeText={(value) => setUsername(value)}
               defaultValue={username}
               autoCompleteType="username"
             />
@@ -69,7 +69,7 @@ function RegisterScreen() {
               autoCompleteType="email"
               autoCapitalize="none"
               placeholderTextColor="black"
-              onChangeText={value => setEmail(value)}
+              onChangeText={(value) => setEmail(value)}
               defaultValue={email}
             />
             <TextInput
@@ -79,13 +79,13 @@ function RegisterScreen() {
               secureTextEntry
               autoCapitalize="none"
               placeholderTextColor="black"
-              onChangeText={value => setPassword(value)}
+              onChangeText={(value) => setPassword(value)}
               defaultValue={password}
             />
             <Button
               title="S'inscrire "
               color="#5D453B"
-              onPress={() => dispatch(Actions.registerUser({ username: username, email: email, password: password }))}
+              onPress={() => dispatch(Actions.registerUser({ username, email, password }))}
               type="outline"
             />
           </View>

@@ -34,18 +34,18 @@ const userReducer = (state = initialState, action) => {
         userInfo: null,
       };
     }
-    case Actions.UPDATE_USER: 
+    case Actions.UPDATE_USER:
     {
       return {
         ...state,
-        userInfo: { user: action.userInfo }
-      }
+        userInfo: { user: action.userInfo },
+      };
     }
     case Actions.UPDATE_USER_ERROR:
     {
       return {
-        ...state
-      }
+        ...state,
+      };
     }
     default:
     {

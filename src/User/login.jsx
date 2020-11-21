@@ -66,7 +66,7 @@ function LoginScreen() {
               placeholder="Username"
               autoCapitalize="none"
               placeholderTextColor="black"
-              onChangeText={value => setUsername(value)}
+              onChangeText={(value) => setUsername(value)}
               defaultValue={username}
             />
             <TextInput
@@ -75,13 +75,13 @@ function LoginScreen() {
               secureTextEntry
               autoCapitalize="none"
               placeholderTextColor="black"
-              onChangeText={value => setPassword(value)}
+              onChangeText={(value) => setPassword(value)}
               defaultValue={password}
             />
             <Button
               title="Se connecter "
               color="#5D453B"
-              onPress={() => dispatch(Actions.authUser({ identifier: username, password: password }))}
+              onPress={() => dispatch(Actions.authUser({ identifier: username, password }))}
               type="outline"
             />
           </View>

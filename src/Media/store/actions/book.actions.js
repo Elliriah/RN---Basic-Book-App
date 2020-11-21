@@ -4,24 +4,23 @@ export const GET_BOOKS = '[BOOK] GET BOOKS';
 export const GET_FAVORIS = '[FAVORIS] GET FAVORIS';
 export const ADD_FAVORIS = '[FAVORIS] ADD FAVORIS';
 
-export const addFavoris = (payload, idUser, idBook) =>
-{
+export const addFavoris = (payload, idUser, idBook) => {
   const result = axios({
     method: 'POST',
     url: 'https://dark-nightmare-23481.herokuapp.com/favorites',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${payload}`
+      Authorization: `Bearer ${payload}`,
     },
     data: {
       user: idUser,
       book: idBook,
-      type: "book"
-    }
+      type: 'book',
+    },
   });
   return (dispatch) => {
     result.then((response) => {
-      console.log("FAVORIS RESPONSE:::", response)
+      console.log('FAVORIS RESPONSE:::', response);
       dispatch(getFavoris(payload, idUser));
       dispatch({
         type: ADD_FAVORIS,
@@ -35,7 +34,7 @@ export const addFavoris = (payload, idUser, idBook) =>
       });
     });
   };
-}
+};
 
 export const getFavoris = (payload, idUser) => {
   const config = {
@@ -43,8 +42,8 @@ export const getFavoris = (payload, idUser) => {
       Authorization: `Bearer ${payload}`,
     },
   };
-  console.log("GET FAVORIS");
-  const result = axios.get('https://dark-nightmare-23481.herokuapp.com/users/me/books/' + idUser, config);
+  console.log('GET FAVORIS');
+  const result = axios.get(`https://dark-nightmare-23481.herokuapp.com/users/me/books/${idUser}`, config);
   return (dispatch) => {
     result.then((response) => {
       dispatch({
@@ -58,7 +57,7 @@ export const getFavoris = (payload, idUser) => {
       });
     });
   };
-}
+};
 
 export const getBooks = (payload) => {
   const config = {
@@ -66,7 +65,7 @@ export const getBooks = (payload) => {
       Authorization: `Bearer ${payload}`,
     },
   };
-  console.log("COnfig Books", config);
+  console.log('COnfig Books', config);
   const result = axios.get('https://dark-nightmare-23481.herokuapp.com/books', config);
 
   return (dispatch) => {

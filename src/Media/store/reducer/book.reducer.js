@@ -2,7 +2,7 @@ import * as Actions from '../actions';
 
 const initialState = {
   books: null,
-  favoris: null
+  favoris: null,
 };
 
 const bookReducer = (state = initialState, action) => {
@@ -10,15 +10,15 @@ const bookReducer = (state = initialState, action) => {
     case Actions.ADD_FAVORIS:
     {
       return {
-        ...state
-      }
+        ...state,
+      };
     }
     case Actions.GET_FAVORIS:
     {
       return {
         ...state,
-        favoris: action.payload
-      }
+        favoris: action.payload,
+      };
     }
     case Actions.GET_BOOKS:
     {

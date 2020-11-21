@@ -1,6 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
-import { Button, Image, View, Platform } from 'react-native';
+import {
+  Button, Image, View, Platform,
+} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
@@ -10,7 +11,7 @@ export default function ImagePickerComponent() {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const user = useSelector((state) => state.userReducer.user);
-  var idUser = user.userInfo.user.id;
+  const idUser = user.userInfo.user.id;
 
   useEffect(() => {
     (async () => {
@@ -24,36 +25,36 @@ export default function ImagePickerComponent() {
   }, []);
 
   const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
+    const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
     });
-    console.log("RESULT===", result);
+    console.log('RESULT===', result);
     if (result.cancelled === true) {
-        return;
+      return;
     }
-    let formData = new FormData();
-    let localUri = result.uri;
-    let filename = localUri.split('/').pop();
-    let match = /\.(\w+)$/.exec(filename);
-    let type = match ? `image/${match[1]}` : `image`;
+    const formData = new FormData();
+    const localUri = result.uri;
+    const filename = localUri.split('/').pop();
+    const match = /\.(\w+)$/.exec(filename);
+    const type = match ? `image/${match[1]}` : 'image';
 
-    formData.append('files', { uri: result.uri, name: "yoloss", type });
+    formData.append('files', { uri: result.uri, name: 'yoloss', type });
     formData.append('ref', 'user');
     formData.append('refId', idUser);
     formData.append('field', 'avatar');
-    formData.append('source', 'users-permissions')
-    console.log("Acgtions===", Actions);
+    formData.append('source', 'users-permissions');
+    console.log('Acgtions===', Actions);
     axios
-      .post(`https://dark-nightmare-23481.herokuapp.com/upload`, formData, {
-        headers: { 'Content-Type': 'multipart/form-data',  'Authorization': 'Bearer ' + user.token},
+      .post('https://dark-nightmare-23481.herokuapp.com/upload', formData, {
+        headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${user.token}` },
       })
-      .then(res => {
+      .then((res) => {
         dispatch(Actions.getUserInfo(user.token));
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
 

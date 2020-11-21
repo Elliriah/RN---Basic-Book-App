@@ -3,9 +3,9 @@ import { View, StyleSheet, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Avatar, Accessory } from 'react-native-elements';
 import { TextInput } from 'react-native-paper';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Actions from './store/actions';
 import ImagePicker from './component/imagePicker';
-import { useDispatch, useSelector } from 'react-redux';
 
 const styles = StyleSheet.create({
   container: {
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   inputProfilName: {
     marginTop: '90%',
     marginLeft: '-40%',
-    bottom: "10%",
+    bottom: '10%',
     width: 200,
     // paddingLeft: '30%',
 
@@ -39,6 +39,12 @@ const styles = StyleSheet.create({
     marginLeft: '-49%',
     width: 200,
   },
+  viewInput : {
+    left: '20%'
+  },
+  viewButton : {
+    marginBottom: '100%'
+  }
 });
 
 function ProfilScreen() {
@@ -47,17 +53,15 @@ function ProfilScreen() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userReducer.user);
 
-  console.log("USER==", user);
-  //console.log("USER===", user);
-  var avatar = null
+  console.log('USER==', user);
+  // console.log("USER===", user);
+  let avatar = null;
   if (user.userInfo.user.avatar !== null) {
-    
     avatar = user.userInfo.user.avatar.url;
+  } else {
+    avatar = null;
   }
-  else {
-    avatar = null
-  }
-  
+
   console.log(avatar);
   return (
     <>
@@ -70,32 +74,32 @@ function ProfilScreen() {
             }}
           >
             <Accessory />
-            
+
           </Avatar>
-        <ImagePicker/>
+          <ImagePicker />
 
         </View>
-        <View style={{left: "20%"}}>
-        <TextInput
-          style={[styles.inputProfilEmail]}
-          label="Email"
-          value="eloise@gmail.com"
-          onChangeText={(value) => setText(value)}
-        />
-        <TextInput
-          style={[styles.inputProfilName]}
-          label="Name"
-          value="Eloïse Boyer"
-          onChangeText={(value) => setText(value)}
-        />
-        <View style={{marginBottom: "100%"}}>
-        <Button
-          title="Se deconnecter  "
-          backgroundColor= "black"
-          onPress={() => dispatch(Actions.logoutUser())}
-          type="outline"
-        />
-        </View>
+        <View style={styles.viewInput}>
+          <TextInput
+            style={[styles.inputProfilEmail]}
+            label="Email"
+            value="eloise@gmail.com"
+            onChangeText={(value) => setText(value)}
+          />
+          <TextInput
+            style={[styles.inputProfilName]}
+            label="Name"
+            value="Eloïse Boyer"
+            onChangeText={(value) => setText(value)}
+          />
+          <View style={styles.viewButton}>
+            <Button
+              title="Se deconnecter  "
+              backgroundColor="black"
+              onPress={() => dispatch(Actions.logoutUser())}
+              type="outline"
+            />
+          </View>
         </View>
       </View>
     </>
