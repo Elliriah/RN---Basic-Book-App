@@ -63,9 +63,9 @@ export default function ImagePickerComponent() {
   };
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button title="Pick an image fromsqdqsd camera roll" onPress={pickImage} />
-      {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+    <View style={{ }}>
+      <Button title="Modifier " onPress={pickImage} />
+      {/* {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />} */}
     </View>
   );
 }

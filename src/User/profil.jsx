@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
+    textAlign: 'center',
     alignItems: 'flex-start', // if you want to fill rows left to right
   },
   imageProfil: {
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
     paddingTop: '20%',
   },
   inputProfilEmail: {
-    marginTop: '70%',
+    marginTop: '50%',
     marginLeft: '-40%',
     width: 200,
     // paddingLeft: '30%',
@@ -27,7 +28,8 @@ const styles = StyleSheet.create({
   },
   inputProfilName: {
     marginTop: '90%',
-    marginLeft: '-49%',
+    marginLeft: '-40%',
+    bottom: "10%",
     width: 200,
     // paddingLeft: '30%',
 
@@ -68,8 +70,12 @@ function ProfilScreen() {
             }}
           >
             <Accessory />
+            
           </Avatar>
+        <ImagePicker/>
+
         </View>
+        <View style={{left: "20%"}}>
         <TextInput
           style={[styles.inputProfilEmail]}
           label="Email"
@@ -82,21 +88,15 @@ function ProfilScreen() {
           value="Eloïse Boyer"
           onChangeText={(value) => setText(value)}
         />
+        <View style={{marginBottom: "100%"}}>
         <Button
-          title="Se connecter "
-          color="#5D453B"
+          title="Se deconnecter  "
+          backgroundColor= "black"
           onPress={() => dispatch(Actions.logoutUser())}
           type="outline"
         />
-        <View style={[styles.inputProfilDeconnecter]}>
-          <Button
-            title="Se déconnecter "
-            color="#5D453B"
-            onPress={() => navigation.navigate('Home')}
-            type="outline"
-          />
         </View>
-        <ImagePicker/>
+        </View>
       </View>
     </>
   );

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {
-  Image, ScrollView, TouchableWithoutFeedback, TouchableHighlight, View, StyleSheet,
+  Image, ScrollView, TouchableHighlight, View, StyleSheet,
 } from 'react-native';
 // import { useNavigation } from '@react-navigation/native';
 import { Searchbar } from 'react-native-paper';
@@ -13,7 +13,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    alignItems: 'flex-start', // if you want to fill rows left to right
+    left: "3%",
+    top: "4%",
+    alignItems: 'flex-start' // if you want to fill rows left to right
   },
   item: {
     width: '50%', // is 50% of container width
@@ -21,10 +23,10 @@ const styles = StyleSheet.create({
   searchbarSize: {
     width: 600,
     top: 30,
-    marginBottom: 20,
+    marginBottom: 20
   },
   listBook: {
-    top: 11,
+    top: 11
   },
 });
 
@@ -65,8 +67,8 @@ function HomeScreen() {
         return (
           <View key={keymap}>
             <TouchableHighlight onPress={() => onPressModal(element)}>
-              <View style={styles.item}>
-                <Image source={imgUrl} style={{ width: 135, height: 170 }} />
+              <View>
+                <Image source={imgUrl} style={{ width: 170, height: 190 }} />
               </View>
             </TouchableHighlight>
           </View>
@@ -88,7 +90,7 @@ function HomeScreen() {
         value={searchQuery}
       />
       <ScrollView>
-        <View style={[styles.listBook]}>
+        <View>
           <View style={[styles.container]}>
             {displayBook()}
           </View>
