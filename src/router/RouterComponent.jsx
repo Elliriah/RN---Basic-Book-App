@@ -8,6 +8,7 @@ import Login from '../User/login';
 import Register from '../User/register';
 import Profil from '../User/profil';
 import Home from '../Media/home';
+import Favoris from '../Media/favoris';
 import {  useSelector } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -31,6 +32,7 @@ function RouterComponent(props) {
       <NavigationContainer>
       <Tab.Navigator>
       <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Favoris" component={Favoris} />
       <Tab.Screen name="Profil" component={Profil} />
       </Tab.Navigator>
       </NavigationContainer>
