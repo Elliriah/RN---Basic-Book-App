@@ -1,16 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   ImageBackground, View, StyleSheet, Button, TextInput,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-// import withReducer from '../store/withReducer';
-import { useDispatch, useSelector } from 'react-redux';
-import { connect } from 'react-redux';
-import { bindActionsCreators } from 'redux';
-import { SwitchActions } from 'react-navigation';
-// const wallpaper = { uri: "../public/wallpaper.jpg"};
-import { TabActions } from '@react-navigation/native';
-import reducer from './store/reducer';
+import { useDispatch } from 'react-redux';
 import * as Actions from './store/actions';
 
 const styles = StyleSheet.create({
@@ -35,10 +28,6 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     justifyContent: 'center',
   },
-  fixToText: {
-    // flexDirection: 'row',
-    // justifyContent: 'space-between',
-  },
   buttonSubmit: {
     alignSelf: 'flex-end',
     position: 'absolute',
@@ -51,30 +40,16 @@ const styles = StyleSheet.create({
   },
 });
 
-function LoginScreen(props) {
+function LoginScreen() {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-
-  const test = useSelector((state) => state.userReducer.user.entities);
-  const logged = useSelector((state) => state.userReducer.user.logged);
-  useEffect(() => {
-    //dispatch(Actions.authUser({ identifier: 'midosol', password: 'test123' }));
-  }, []);
-  console.log('LOGGEDssssss=', logged);
-
-  async function redirectUser() {
-    //const jumpToAction = TabActions.jumpTo('Home');
-    //navigation.dispatch(jumpToAction);
-  }
-
-  if (logged === true) {
-    // redirectUser();
-    // return null;
-  }
+  const imagebg = require('../../public/wallpaper.jpg');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   return (
     <>
       <View style={styles.container}>
-        <ImageBackground source={require('../../public/wallpaper.jpg')} style={styles.image}>
+        <ImageBackground source={imagebg} style={styles.image}>
           <View w style={styles.fixToText}>
             <View style={[styles.buttonSubmit]}>
               <Button
@@ -91,6 +66,8 @@ function LoginScreen(props) {
               placeholder="Username"
               autoCapitalize="none"
               placeholderTextColor="black"
+              onChangeText={value => setUsername(value)}
+              defaultValue={username}
             />
             <TextInput
               style={styles.input}
@@ -98,11 +75,13 @@ function LoginScreen(props) {
               secureTextEntry
               autoCapitalize="none"
               placeholderTextColor="black"
+              onChangeText={value => setPassword(value)}
+              defaultValue={password}
             />
             <Button
               title="Se connecter "
               color="#5D453B"
-              onPress={() => dispatch(Actions.authUser({ identifier: 'midosol', password: 'test123' }))}
+              onPress={() => dispatch(Actions.authUser({ identifier: username, password: password }))}
               type="outline"
             />
           </View>
@@ -113,4 +92,3 @@ function LoginScreen(props) {
 }
 
 export default LoginScreen;
-

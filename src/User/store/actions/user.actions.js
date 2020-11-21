@@ -3,20 +3,20 @@ import axios from 'axios';
 export const AUTH_USER = '[USER] AUTH_USER';
 export const REGISTER_USER = '[USER] REGISTER_USER';
 export const LOGOUT_USER = '[USER] LOGOUT USER';
+export const UPDATE_USER = '[USER] UPDATE USER';
+export const UPDATE_USER_ERROR = '[USER] UPDATE USER ERROR';
 
 export const authUser = (payload) => {
-  console.log(payload);
   const result = axios.post('https://dark-nightmare-23481.herokuapp.com/auth/local', payload);
   return (dispatch) => {
     result.then((response) => {
-      console.log(response.data);
       dispatch({
         type: AUTH_USER,
         payload: true,
-        token: response.data.jwt
+        token: response.data.jwt,
+        userInfo: response.data,
       });
-    }).catch((error) => {
-      response.log(error);
+    }).catch(() => {
       dispatch({
         type: AUTH_USER,
         payload: false,
@@ -25,25 +25,56 @@ export const authUser = (payload) => {
   };
 };
 
-export const logoutUser = () => {
+export const logoutUser = () => (dispatch) => {
+  dispatch({
+    type: LOGOUT_USER,
+    payload: false,
+  });
+};
 
-  console.log("LOGOUUUUUUUUUUUUUUUUUUT");
-  return (dispatch) => {
-    dispatch({
-      type: LOGOUT_USER,
-      payload: false
-    })
-  }
-}
+export const getUserInfo = (payload) => {
 
-export const registerUser = () => {
-  console.log('REDUCER ON');
+  const config = {
+    headers: {
+      Authorization: `Bearer ${payload}`,
+    },
+  };
+  const result = axios.get('https://dark-nightmare-23481.herokuapp.com/users/me', config);
   return (dispatch) => {
-    const result = axios.post('https://dark-nightmare-23481.herokuapp.com/auth/local', { identifier: 'midosol', password: 'test123' });
     result.then((response) => {
+      console.log("GET RESPONSE====", response);
       dispatch({
-        type: REGISTER_USER,
-        payload: 'yolosa',
+        type: UPDATE_USER,
+        userInfo: response.data,
+      });
+    }).catch((error) => {
+      console.log(error);
+      dispatch({
+        type: UPDATE_USER_ERROR,
+      });
+    });
+  };
+};
+
+export const registerUser = (payload) => {
+  console.log("register");
+  console.log(payload);
+  const result = axios.post('https://dark-nightmare-23481.herokuapp.com/auth/local/register', payload);
+  return (dispatch) => {
+    result.then((response) => {
+      console.log(response);
+      dispatch({
+        type: AUTH_USER,
+        payload: true,
+        token: response.data.jwt,
+        userInfo: response.data,
+      });
+    }).catch((error) => {
+      console.log(error);
+      console.log("?????????????")
+      dispatch({
+        type: AUTH_USER,
+        payload: false,
       });
     });
   };

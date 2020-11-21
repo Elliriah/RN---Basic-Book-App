@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import {
   ImageBackground, View, StyleSheet, Button, TextInput,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-
-const wallpaper = { uri: 'https://i.pinimg.com/originals/6f/11/c5/6f11c51b8efb2c82af6c605e9321e766.jpg' };
+import { useDispatch } from 'react-redux';
+import * as Actions from './store/actions';
+// const wallpaper = { uri: 'https://i.pinimg.com/originals/6f/11/c5/6f11c51b8efb2c82af6c605e9321e766.jpg' };
 
 const styles = StyleSheet.create({
   input: {
@@ -44,31 +44,48 @@ const styles = StyleSheet.create({
   },
 });
 
-function RegisterScreen(props) {
-  const navigation = useNavigation();
-
+function RegisterScreen() {
+  const dispatch = useDispatch();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
   return (
     <>
       <View style={styles.container}>
         <ImageBackground source={require('../../public/wallpaper.jpg')} style={styles.image}>
           <View style={styles.cardOpacity}>
-            <TextInput
+          <TextInput
               style={styles.input}
               placeholder="Username"
               autoCapitalize="none"
               placeholderTextColor="black"
+              onChangeText={value => setUsername(value)}
+              defaultValue={username}
+              autoCompleteType="username"
             />
             <TextInput
               style={styles.input}
+              placeholder="Email"
+              autoCompleteType="email"
+              autoCapitalize="none"
+              placeholderTextColor="black"
+              onChangeText={value => setEmail(value)}
+              defaultValue={email}
+            />
+            <TextInput
+              style={styles.input}
+              autoCompleteType="password"
               placeholder="Password"
               secureTextEntry
               autoCapitalize="none"
               placeholderTextColor="black"
+              onChangeText={value => setPassword(value)}
+              defaultValue={password}
             />
             <Button
               title="S'inscrire "
               color="#5D453B"
-              onPress={() => navigation.navigate('Home')}
+              onPress={() => dispatch(Actions.registerUser({ username: username, email: email, password: password }))}
               type="outline"
             />
           </View>

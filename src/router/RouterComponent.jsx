@@ -1,51 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import {
-  ImageBackground, View, StyleSheet, Button, TextInput,
-} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-// import withReducer from '../store/withReducer';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Login from '../User/login';
 import Register from '../User/register';
 import Profil from '../User/profil';
 import Home from '../Media/home';
-import Favoris from '../Media/favoris';
-import {  useSelector } from 'react-redux';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+//        import Favoris from '../Media/favoris';
+//         <Tab.Screen name="Favoris" component={Favoris} />
 const Tab = createBottomTabNavigator();
-function RouterComponent(props) {
 
+function RouterComponent() {
   const logged = useSelector((state) => state.userReducer.user.logged);
-  const LoginNavigation = (() => {
-    return (
+  const LoginNavigation = (() => (
     <NavigationContainer>
-    <Tab.Navigator>
-    <Tab.Screen name="Login" component={Login} />
-    <Tab.Screen name="Register" component={Register} />
-    </Tab.Navigator>
-    </NavigationContainer>
-    )
-  });
-
-  const AppNavigation = (() => {
-    return (
-      <NavigationContainer>
       <Tab.Navigator>
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Favoris" component={Favoris} />
-      <Tab.Screen name="Profil" component={Profil} />
+        <Tab.Screen name="Login" component={Login} />
+        <Tab.Screen name="Register" component={Register} />
       </Tab.Navigator>
-      </NavigationContainer>
-    )
-  });
+    </NavigationContainer>
+  ));
+
+  const AppNavigation = (() => (
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={Home} />
+
+        <Tab.Screen name="Profil" component={Profil} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  ));
 
   const routerTabs = (() => {
     if (logged === false) {
-       return LoginNavigation();
-    } else {
-       return AppNavigation();
+      return LoginNavigation();
     }
-  })
+    return AppNavigation();
+  });
 
   return (
     <>

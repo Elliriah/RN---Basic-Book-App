@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import {
-  ImageBackground, ScrollView, Text, View, StyleSheet, Button, Grid,
-} from 'react-native';
+import React from 'react';
+import { View, StyleSheet, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Avatar, Accessory } from 'react-native-elements';
 import { TextInput } from 'react-native-paper';
 import * as Actions from './store/actions';
+import ImagePicker from './component/imagePicker';
 import { useDispatch, useSelector } from 'react-redux';
 
 const styles = StyleSheet.create({
@@ -40,20 +39,32 @@ const styles = StyleSheet.create({
   },
 });
 
-function ProfilScreen(props) {
-  const [email, name, setText] = React.useState('');
+function ProfilScreen() {
+  const [email, setText] = React.useState('');
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.userReducer.user);
+
+  console.log("USER==", user);
+  //console.log("USER===", user);
+  var avatar = null
+  if (user.userInfo.user.avatar !== null) {
+    
+    avatar = user.userInfo.user.avatar.url;
+  }
+  else {
+    avatar = null
+  }
+  
+  console.log(avatar);
   return (
     <>
       <View style={[styles.container]}>
         <View style={[styles.imageProfil]}>
           <Avatar
-
             size="xlarge"
             source={{
-              uri:
-      'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+              uri: avatar,
             }}
           >
             <Accessory />
@@ -63,20 +74,20 @@ function ProfilScreen(props) {
           style={[styles.inputProfilEmail]}
           label="Email"
           value="eloise@gmail.com"
-          onChangeText={(email) => setText(email)}
+          onChangeText={(value) => setText(value)}
         />
         <TextInput
           style={[styles.inputProfilName]}
           label="Name"
           value="Eloïse Boyer"
-          onChangeText={(name) => setText(name)}
+          onChangeText={(value) => setText(value)}
         />
-         <Button
-              title="Se connecter "
-              color="#5D453B"
-              onPress={() => dispatch(Actions.logoutUser())}
-              type="outline"
-            />
+        <Button
+          title="Se connecter "
+          color="#5D453B"
+          onPress={() => dispatch(Actions.logoutUser())}
+          type="outline"
+        />
         <View style={[styles.inputProfilDeconnecter]}>
           <Button
             title="Se déconnecter "
@@ -85,6 +96,7 @@ function ProfilScreen(props) {
             type="outline"
           />
         </View>
+        <ImagePicker/>
       </View>
     </>
   );
