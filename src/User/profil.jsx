@@ -3,8 +3,9 @@ import { View, StyleSheet, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Avatar, Accessory } from 'react-native-elements';
 import { TextInput } from 'react-native-paper';
-import { useDispatch } from 'react-redux';
 import * as Actions from './store/actions';
+import ImagePicker from './component/imagePicker';
+import { useDispatch, useSelector } from 'react-redux';
 
 const styles = StyleSheet.create({
   container: {
@@ -42,6 +43,20 @@ function ProfilScreen() {
   const [email, setText] = React.useState('');
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.userReducer.user);
+
+  console.log("USER==", user);
+  //console.log("USER===", user);
+  var avatar = null
+  if (user.userInfo.user.avatar !== null) {
+    
+    avatar = user.userInfo.user.avatar.url;
+  }
+  else {
+    avatar = null
+  }
+  
+  console.log(avatar);
   return (
     <>
       <View style={[styles.container]}>
@@ -49,8 +64,7 @@ function ProfilScreen() {
           <Avatar
             size="xlarge"
             source={{
-              uri:
-      'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+              uri: avatar,
             }}
           >
             <Accessory />
@@ -82,6 +96,7 @@ function ProfilScreen() {
             type="outline"
           />
         </View>
+        <ImagePicker/>
       </View>
     </>
   );

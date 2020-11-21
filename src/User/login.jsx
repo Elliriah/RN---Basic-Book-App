@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ImageBackground, View, StyleSheet, Button, TextInput,
 } from 'react-native';
@@ -44,6 +44,8 @@ function LoginScreen() {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const imagebg = require('../../public/wallpaper.jpg');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   return (
     <>
       <View style={styles.container}>
@@ -64,6 +66,8 @@ function LoginScreen() {
               placeholder="Username"
               autoCapitalize="none"
               placeholderTextColor="black"
+              onChangeText={value => setUsername(value)}
+              defaultValue={username}
             />
             <TextInput
               style={styles.input}
@@ -71,11 +75,13 @@ function LoginScreen() {
               secureTextEntry
               autoCapitalize="none"
               placeholderTextColor="black"
+              onChangeText={value => setPassword(value)}
+              defaultValue={password}
             />
             <Button
               title="Se connecter "
               color="#5D453B"
-              onPress={() => dispatch(Actions.authUser({ identifier: 'midosol', password: 'test123' }))}
+              onPress={() => dispatch(Actions.authUser({ identifier: username, password: password }))}
               type="outline"
             />
           </View>
