@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {
-  Image, ScrollView, TouchableWithoutFeedback, View, StyleSheet,
+  Image, ScrollView, TouchableWithoutFeedback, TouchableHighlight, View, StyleSheet,
 } from 'react-native';
 // import { useNavigation } from '@react-navigation/native';
 import { Searchbar } from 'react-native-paper';
@@ -34,6 +34,7 @@ function HomeScreen() {
   const [searchQuery, setSearchQuery] = React.useState('');
   const onChangeSearch = (query) => setSearchQuery(query);
   const [modalbool, setModelbool] = React.useState(false);
+  const [data, setData] = React.useState(null);
   const token = useSelector((state) => state.userReducer.user.token);
   const books = useSelector((state) => state.bookReducer.book.books);
 
@@ -41,7 +42,8 @@ function HomeScreen() {
     dispatch(Actions.getBooks(token));
   }, [token]);
 
-  const onPressModal = () => {
+  const onPressModal = (element) => {
+    setData(element);
     setModelbool(true);
   };
 
@@ -61,12 +63,12 @@ function HomeScreen() {
           imgUrl = { uri: 'https://i.pinimg.com/originals/6f/11/c5/6f11c51b8efb2c82af6c605e9321e766.jpg' };
         }
         return (
-          <View key={keymap} style={styles.column1}>
-            <TouchableWithoutFeedback onPress={() => onPressModal()}>
+          <View key={keymap}>
+            <TouchableHighlight onPress={() => onPressModal(element)}>
               <View style={styles.item}>
                 <Image source={imgUrl} style={{ width: 135, height: 170 }} />
               </View>
-            </TouchableWithoutFeedback>
+            </TouchableHighlight>
           </View>
         );
       });
@@ -76,9 +78,9 @@ function HomeScreen() {
   });
 
   return (
-
     <>
-      <BookDialog display={modalbool} onClose={onCloseModal} />
+      { (modalbool === true) ? 
+      <BookDialog display={modalbool} onClose={onCloseModal} data={data}/> : null }
       <Searchbar
         style={[styles.searchbarSize]}
         placeholder="Search"

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, ScrollView, StyleSheet, Text, View, Image, TouchableOpacity} from "react-native";
+import { Button, ScrollView, StyleSheet, Text, View, Image, TouchableHighlight} from "react-native";
 import Modal, { ModalContent } from 'react-native-modal';
 
 
@@ -61,41 +61,46 @@ const styles = StyleSheet.create({
 
 function BookDialog(props) {
 const bookOne = { uri: "https://i.pinimg.com/originals/6f/11/c5/6f11c51b8efb2c82af6c605e9321e766.jpg" };
+  console.log("bookDialogProps======", props);
 
+  if (props.data === null) {
+    return null 
+  } else {
+    return (
 
-  return (
-        <View>
-   <Modal isVisible={props.display} onBackdropPress={() => {props.onClose()}}>
-         <View style={styles.cardOpacity}>
-           <View style={styles.bookCard}>
-          <Text style={{color: "black", fontSize: 50, left: 30, top: 20}}>Titre</Text>
-          <TouchableOpacity
-        style={styles.favorite_container}
-        onPress={() => {props.onClose()}}>
-         <Image source={require('../../public/icon/favorite.png')} style = {styles.favorite_image} />          
+          <View>
+    <Modal isVisible={props.display} onBackdropPress={() => {props.onClose()}}>
+          <View style={styles.cardOpacity}>
+            <View style={styles.bookCard}>
+            <Text style={{color: "black", fontSize: 50, left: 30, top: 20}}>{props.data.title}</Text>
+            <TouchableHighlight
+          style={styles.favorite_container}
+          onPress={() => {props.onClose()}}>
+          <Image source={require('../../public/icon/favorite.png')} style = {styles.favorite_image} />          
 
-        </TouchableOpacity>
-          <Image source={bookOne} style={{zIndex: -1,right: 40, width: 250, height: 300}}/>
-          <View
-            style={{
-              borderBottomColor: 'gray',
-              borderBottomWidth: 1,
-              right: 80,
-              top: 15
-            }}/>
-          <View style={{width: '100%', right: 80}}>
-            <ScrollView>
-          <Text style={{color: "black", fontSize: 20, top: 20}}>
-            Description
-          </Text>
-          </ScrollView>
+          </TouchableHighlight>
+            <Image source={{uri: props.data.img.url}} style={{zIndex: -1,right: 40, width: 250, height: 300}}/>
+            <View
+              style={{
+                borderBottomColor: 'gray',
+                borderBottomWidth: 1,
+                right: 80,
+                top: 15
+              }}/>
+            <View style={{width: '100%', right: 80}}>
+              <ScrollView>
+            <Text style={{color: "black", fontSize: 20, top: 20}}>
+              {props.data.description}
+            </Text>
+            </ScrollView>
+            </View>
           </View>
-        </View>
-        <Button title="Fermer" onPress={() => {props.onClose()}} />
-        </View>
-      </Modal>
-    </View>
-  );
+          <Button title="Fermer" onPress={() => {props.onClose()}} />
+          </View>
+        </Modal>
+      </View>
+    )
+  }
 }
 
 export default BookDialog;
