@@ -36,11 +36,14 @@ function FavorisScreen() {
   const [modalbool, setModelbool] = React.useState(false);
   const [data, setData] = React.useState(null);
   const token = useSelector((state) => state.userReducer.user.token);
-  const books = useSelector((state) => state.bookReducer.book.books);
+  const favoris = useSelector((state) => state.bookReducer.book.favoris);
+  console.log("Favoris===", favoris)
+  const user = useSelector((state) => state.userReducer.user);
+  var idUser = user.userInfo.user.id;
 
   useEffect(() => {
-    dispatch(Actions.getBooks(token));
-  }, [token]);
+    dispatch(Actions.getFavoris(token, idUser));
+  }, [token, idUser]);
 
   const onPressModal = (element) => {
     setData(element);
@@ -51,20 +54,21 @@ function FavorisScreen() {
     setModelbool(false);
   };
 
-  const displayBook = (() => {
-    if (books !== null) {
+  const displayFavoris = (() => {
+    console.log(favoris);
+    if (favoris !== null) {
       let keymap = 0;
-      const booksDisplayer = books.map((element) => {
+      const booksDisplayer = favoris.map((element) => {
         let imgUrl;
         keymap += 1;
-        if (element.img.irl !== null) {
-          imgUrl = { uri: element.img.url };
+        if (element.book.img.irl !== null) {
+          imgUrl = { uri: element.book.img.url };
         } else {
           imgUrl = { uri: 'https://i.pinimg.com/originals/6f/11/c5/6f11c51b8efb2c82af6c605e9321e766.jpg' };
         }
         return (
           <View key={keymap}>
-            <TouchableHighlight onPress={() => onPressModal(element)}>
+            <TouchableHighlight onPress={() => onPressModal(element.book)}>
               <View style={styles.item}>
                 <Image source={imgUrl} style={{ width: 135, height: 170 }} />
               </View>
@@ -74,8 +78,9 @@ function FavorisScreen() {
       });
       return booksDisplayer;
     }
+    console.log(favoris, "ISFAVORIS THE BEST ???");
     return null;
-  });
+    });
 
   return (
     <>
@@ -90,7 +95,7 @@ function FavorisScreen() {
       <ScrollView>
         <View style={[styles.listBook]}>
           <View style={[styles.container]}>
-            {displayBook()}
+            {displayFavoris()}
           </View>
         </View>
       </ScrollView>

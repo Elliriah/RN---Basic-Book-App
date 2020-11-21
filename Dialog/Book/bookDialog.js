@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Button, ScrollView, StyleSheet, Text, View, Image, TouchableHighlight} from "react-native";
 import Modal, { ModalContent } from 'react-native-modal';
-
-
+import { useDispatch, useSelector } from 'react-redux';
+import * as Actions from '../../src/Media/store/actions';
 
 const styles = StyleSheet.create({
   input: {
@@ -60,14 +60,18 @@ const styles = StyleSheet.create({
 });   
 
 function BookDialog(props) {
-const bookOne = { uri: "https://i.pinimg.com/originals/6f/11/c5/6f11c51b8efb2c82af6c605e9321e766.jpg" };
-  console.log("bookDialogProps======", props);
+  const dispatch = useDispatch();
+  const bookOne = { uri: "https://i.pinimg.com/originals/6f/11/c5/6f11c51b8efb2c82af6c605e9321e766.jpg" };
+  const user = useSelector((state) => state.userReducer.user);
+  
+  const addFavoris = (() => {
+    dispatch(Actions.addFavoris(user.token, user.userInfo.user.id, props.data.id))
+  });
 
   if (props.data === null) {
     return null 
   } else {
     return (
-
           <View>
     <Modal isVisible={props.display} onBackdropPress={() => {props.onClose()}}>
           <View style={styles.cardOpacity}>
@@ -75,7 +79,7 @@ const bookOne = { uri: "https://i.pinimg.com/originals/6f/11/c5/6f11c51b8efb2c82
             <Text style={{color: "black", fontSize: 50, left: 30, top: 20}}>{props.data.title}</Text>
             <TouchableHighlight
           style={styles.favorite_container}
-          onPress={() => {props.onClose()}}>
+          onPress={() => {addFavoris()}}>
           <Image source={require('../../public/icon/favorite.png')} style = {styles.favorite_image} />          
 
           </TouchableHighlight>
