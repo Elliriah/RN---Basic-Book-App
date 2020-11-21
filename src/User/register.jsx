@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   ImageBackground, View, StyleSheet, Button, TextInput,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const wallpaper = { uri: 'https://i.pinimg.com/originals/6f/11/c5/6f11c51b8efb2c82af6c605e9321e766.jpg' };
+// const wallpaper = { uri: 'https://i.pinimg.com/originals/6f/11/c5/6f11c51b8efb2c82af6c605e9321e766.jpg' };
 
 const styles = StyleSheet.create({
   input: {
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function RegisterScreen(props) {
+function RegisterScreen() {
   const navigation = useNavigation();
 
   return (

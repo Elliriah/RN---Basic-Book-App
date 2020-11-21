@@ -7,6 +7,6 @@ import bookReducer from '../Media/store/reducer';
 // Redux: Root Reducer
 const rootReducer = combineReducers({
   userReducer,
-  bookReducer
+  bookReducer,
 });// Exports
 export default rootReducer;

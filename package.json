@@ -1,7 +1,7 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "lint": "eslint app.jsx src/**/**.js src/**/**/**/**.js ",
+    "lint": "eslint app.jsx src/**/**.js src/**/**.jsx src/**/**/**/**.js src/**/**/**/**.jsx src/**/**/**/**.jsx",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -43,13 +43,12 @@
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
-    "eslint": "^7.11.0",
-    "eslint-config-airbnb": "^18.2.0",
+    "eslint": "^7.14.0",
+    "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-react": "^7.21.4",
-    "eslint-plugin-react-hooks": "^4.1.2",
-    "redux-logger": "^3.0.6"
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0"
   },
   "private": true
 }
