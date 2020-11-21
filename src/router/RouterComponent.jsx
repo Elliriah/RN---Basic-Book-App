@@ -6,8 +6,8 @@ import Login from '../User/login';
 import Register from '../User/register';
 import Profil from '../User/profil';
 import Home from '../Media/home';
-//        import Favoris from '../Media/favoris';
-//         <Tab.Screen name="Favoris" component={Favoris} />
+import Favoris from '../Media/favoris';
+        
 const Tab = createBottomTabNavigator();
 
 function RouterComponent() {
@@ -25,7 +25,7 @@ function RouterComponent() {
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="Home" component={Home} />
-
+        <Tab.Screen name="Favoris" component={Favoris} />
         <Tab.Screen name="Profil" component={Profil} />
       </Tab.Navigator>
     </NavigationContainer>
