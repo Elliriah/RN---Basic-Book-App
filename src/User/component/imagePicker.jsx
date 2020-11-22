@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
-  Button, Image, View, Platform,
+  Button, View, Platform,
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,14 +15,8 @@ export default function ImagePickerComponent() {
   useEffect(() => {
     (async () => {
       if (Platform.OS !== 'web') {
-        const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
-        if (status !== 'granted') {
-          alert("Désolé, nous avons besoin de l'autorisation permettant d'utiliser la camera pour utiliser ça");
-        }
-        const statusCamera = await ImagePicker.requestCameraPermissionsAsync();
-        if (statusCamera.status !== 'granted') {
-          alert("Désolé, nous avons besoin de l'autorisation permettant d'utiliser la camera pour utiliser ça");
-        }
+        await ImagePicker.requestCameraRollPermissionsAsync();
+        await ImagePicker.requestCameraPermissionsAsync();
       }
     })();
   }, []);
@@ -48,7 +42,6 @@ export default function ImagePickerComponent() {
     formData.append('refId', idUser);
     formData.append('field', 'avatar');
     formData.append('source', 'users-permissions');
-    console.log('Acgtions===', Actions);
     axios
       .post('https://dark-nightmare-23481.herokuapp.com/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${user.token}` },
@@ -56,10 +49,10 @@ export default function ImagePickerComponent() {
       .then(() => {
         dispatch(Actions.getUserInfo(user.token));
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+
       });
-  }
+  };
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -82,7 +75,6 @@ export default function ImagePickerComponent() {
     formData.append('refId', idUser);
     formData.append('field', 'avatar');
     formData.append('source', 'users-permissions');
-    console.log('Acgtions===', Actions);
     axios
       .post('https://dark-nightmare-23481.herokuapp.com/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${user.token}` },
@@ -91,7 +83,7 @@ export default function ImagePickerComponent() {
         dispatch(Actions.getUserInfo(user.token));
       })
       .catch(() => {
-        return;
+
       });
   };
 

@@ -7,10 +7,11 @@ import rootReducer from './reducerList';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: [
-    'userReducer',
-  ],
+  // whitelist: [
+  //   'userReducer',
+  // ],
   blacklist: [
+    'userReducer',
     'bookReducer',
   ],
 };

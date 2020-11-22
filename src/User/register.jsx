@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import * as Actions from './store/actions';
-// const wallpaper = { uri: 'https://i.pinimg.com/originals/6f/11/c5/6f11c51b8efb2c82af6c605e9321e766.jpg' };
+import imagebg from '../../public/wallpaper.jpg';
 
 const styles = StyleSheet.create({
   input: {
@@ -52,7 +52,7 @@ function RegisterScreen() {
   return (
     <>
       <View style={styles.container}>
-        <ImageBackground source={require('../../public/wallpaper.jpg')} style={styles.image}>
+        <ImageBackground source={imagebg} style={styles.image}>
           <View style={styles.cardOpacity}>
             <TextInput
               style={styles.input}

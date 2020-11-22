@@ -1,7 +1,7 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "lint": "eslint app.jsx src/**/**.js src/**/**.jsx src/**/**/**.js src/**/**/**/**.jsx src/**/**/**/**.js src/**/**/**/**.jsx src/**/**/**/**.jsx",
+    "lint": "eslint app.jsx src/**/**.js src/**/**.jsx src/**/**/**.js src/**/**/**/**.jsx src/**/**/**/**.js",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -23,7 +23,7 @@
     "expo": "~39.0.2",
     "expo-image-picker": "~9.1.1",
     "expo-status-bar": "~1.0.2",
-    "prop-type": "^0.0.1",
+    "prop-types": "^15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "^0.63.3",

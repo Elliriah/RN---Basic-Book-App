@@ -1,11 +1,13 @@
 import React from 'react';
-import { View, StyleSheet, Button, ImageBackground } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import {
+  View, StyleSheet, Button, ImageBackground,
+} from 'react-native';
 import { Avatar, Accessory } from 'react-native-elements';
 import { TextInput } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Actions from './store/actions';
 import ImagePicker from './component/imagePicker';
+import imagebg from '../../public/mainWallpaper.jpg';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,94 +21,86 @@ const styles = StyleSheet.create({
     paddingTop: '20%',
   },
   inputProfilEmail: {
-    marginTop: '50%',
-    marginLeft: '-40%',
     width: 200,
     // paddingLeft: '30%',
+    marginTop: 50,
 
   },
   inputProfilName: {
-    marginTop: '90%',
-    marginLeft: '-40%',
-    bottom: '10%',
     width: 200,
-    // paddingLeft: '30%',
-
+    top: 10,
+    bottom: 50,
   },
   inputProfilDeconnecter: {
-    marginTop: '170%',
-    marginLeft: '-49%',
     width: 200,
   },
-  viewInput : {
-    left: '20%'
+  viewInput: {
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+
   },
-  viewButton : {
+  viewButton: {
     marginBottom: '100%',
-    right: 30
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 30,
   },
-  lineHr : {
+  lineHr: {
     borderBottomColor: 'rgba(255,255,255, 0.1)',
-    borderBottomWidth: 30
-  }
+    borderBottomWidth: 30,
+  },
 });
 
 function ProfilScreen() {
-  const [email, setText] = React.useState('');
-  const navigation = useNavigation();
-  const imagebg = require('../../public/mainWallpaper.jpg');
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userReducer.user);
 
-  console.log('USER==', user);
-  // console.log("USER===", user);
   let avatar = null;
   if (user.userInfo.user.avatar !== null) {
     avatar = user.userInfo.user.avatar.url;
   } else {
     avatar = null;
   }
-
-  console.log(avatar);
   return (
     <>
-    <View style={styles.lineHr}/>
+      <View style={styles.lineHr} />
       <View style={[styles.container]}>
-      <ImageBackground source={imagebg}  style={styles.container}>
-        <View style={[styles.imageProfil]}>
-          <Avatar
-            size="xlarge"
-            source={{
-              uri: avatar,
-            }}
-          >
-            <Accessory />
+        <ImageBackground source={imagebg} style={styles.container}>
+          <View style={[styles.imageProfil]}>
+            <Avatar
+              size="xlarge"
+              source={{
+                uri: avatar,
+              }}
+            >
+              <Accessory />
 
-          </Avatar>
-          <ImagePicker />
-        </View>
-        <View style={styles.viewInput}>
-          <TextInput
-            style={[styles.inputProfilEmail]}
-            label="Email"
-            value="eloise@gmail.com"
-            onChangeText={(value) => setText(value)}
-          />
-          <TextInput
-            style={[styles.inputProfilName]}
-            label="Name"
-            value="Eloïse Boyer"
-            onChangeText={(value) => setText(value)}
-          />
-          <View style={styles.viewButton}>
-            <Button
-              title="Se deconnecter  "
-              color="#ff5c5c"
-              onPress={() => dispatch(Actions.logoutUser())}
-              type="outline"
-            />
+            </Avatar>
+            <ImagePicker />
           </View>
-        </View>
+          <View style={styles.viewInput}>
+            <TextInput
+              style={[styles.inputProfilEmail]}
+              label="Username"
+              value={user.userInfo.user.email}
+              editable={false}
+            />
+            <TextInput
+              style={[styles.inputProfilName]}
+              label="Email"
+              value={user.userInfo.user.username}
+              editable={false}
+            />
+            <View style={styles.viewButton}>
+              <Button
+                title="Se deconnecter "
+                color="#ff5c5c"
+                onPress={() => dispatch(Actions.logoutUser())}
+                type="outline"
+              />
+            </View>
+          </View>
         </ImageBackground>
       </View>
     </>

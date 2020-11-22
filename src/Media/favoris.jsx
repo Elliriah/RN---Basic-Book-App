@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import {
-  Image, ScrollView, TouchableWithoutFeedback, TouchableHighlight, View, StyleSheet,
+  Image, ScrollView, TouchableHighlight, View, StyleSheet,
 } from 'react-native';
-// import { useNavigation } from '@react-navigation/native';
-import { Searchbar } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import BookDialog from './component/bookDialog';
 import * as Actions from './store/actions';
@@ -14,39 +12,35 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     left: '2.5%',
-    alignItems: 'flex-start'// if you want to fill rows left to right
+    alignItems: 'flex-start',
   },
   item: {
-    width: '50%', // is 50% of container width
-    flex:1,
-    padding:5
+    width: '50%',
+    flex: 1,
+    padding: 5,
   },
   listBook: {
     top: 11,
   },
-  styleImage : {
+  styleImage: {
     flex: 2,
     justifyContent: 'space-between',
     width: 170,
-    height: 190
+    height: 190,
   },
-  lineHr : {
+  lineHr: {
     borderBottomColor: 'rgba(255,255,255, 0.1)',
     borderBottomWidth: 50,
-  }
+  },
 });
 
 function FavorisScreen() {
   const dispatch = useDispatch();
-  // const navigation = useNavigation();
-  const [searchQuery, setSearchQuery] = React.useState('');
-  const onChangeSearch = (query) => setSearchQuery(query);
   const [idFavori, setIdFavori] = React.useState(null);
   const [modalbool, setModelbool] = React.useState(false);
   const [data, setData] = React.useState(null);
   const token = useSelector((state) => state.userReducer.user.token);
   const favoris = useSelector((state) => state.bookReducer.book.favoris);
-  console.log('Favoris===', favoris);
   const user = useSelector((state) => state.userReducer.user);
   const idUser = user.userInfo.user.id;
 
@@ -65,7 +59,6 @@ function FavorisScreen() {
   };
 
   const displayFavoris = (() => {
-    console.log(favoris);
     if (favoris !== null) {
       let keymap = 0;
       const booksDisplayer = favoris.map((element) => {
@@ -88,15 +81,15 @@ function FavorisScreen() {
       });
       return booksDisplayer;
     }
-    console.log(favoris, 'ISFAVORIS THE BEST ???');
     return null;
   });
 
   return (
     <>
       { (modalbool === true)
-        ? <BookDialog display={modalbool} onClose={onCloseModal} data={data} idFavori={idFavori} /> : null }
-<View style={styles.lineHr}/>
+        ? <BookDialog display={modalbool} onClose={onCloseModal} data={data} idFavori={idFavori} />
+        : null }
+      <View style={styles.lineHr} />
       <ScrollView>
         <View style={[styles.listBook]}>
           <View style={[styles.container]}>

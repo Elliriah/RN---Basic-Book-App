@@ -11,7 +11,6 @@ export const getFavoris = (payload, idUser) => {
       Authorization: `Bearer ${payload}`,
     },
   };
-  console.log('GET FAVORIS');
   const result = axios.get(`https://dark-nightmare-23481.herokuapp.com/users/me/books/${idUser}`, config);
   return (dispatch) => {
     result.then((response) => {
@@ -28,11 +27,10 @@ export const getFavoris = (payload, idUser) => {
   };
 };
 
-export const deleteFavoris = (payload, idFavoris, idUser) =>
-{
+export const deleteFavoris = (payload, idFavoris, idUser) => {
   const result = axios({
     method: 'DELETE',
-    url: 'https://dark-nightmare-23481.herokuapp.com/favorites/' + idFavoris.toString(),
+    url: `https://dark-nightmare-23481.herokuapp.com/favorites/${idFavoris.toString()}`,
     headers: {
       Authorization: `Bearer ${payload}`,
     },
@@ -49,7 +47,7 @@ export const deleteFavoris = (payload, idFavoris, idUser) =>
       });
     });
   };
-}
+};
 
 export const addFavoris = (payload, idUser, idBook) => {
   const result = axios({
@@ -67,14 +65,12 @@ export const addFavoris = (payload, idUser, idBook) => {
   });
   return (dispatch) => {
     result.then((response) => {
-      console.log('FAVORIS RESPONSE:::', response);
       dispatch(getFavoris(payload, idUser));
       dispatch({
         type: ADD_FAVORIS,
         payload: response.data,
       });
-    }).catch((error, reason) => {
-      console.log(error);
+    }).catch(() => {
       dispatch({
         type: ADD_FAVORIS,
         payload: null,
@@ -89,7 +85,6 @@ export const getBooks = (payload) => {
       Authorization: `Bearer ${payload}`,
     },
   };
-  console.log('COnfig Books', config);
   const result = axios.get('https://dark-nightmare-23481.herokuapp.com/books', config);
 
   return (dispatch) => {
