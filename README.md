@@ -21,7 +21,7 @@ Cette application  permet, après authentification &/ou creation du compte, de v
 
 
 ## Build le Projet
-Veuillez au prealable creer un compte sur le site https://expo.io/, puis de vous logger sur une console decommande grace à la commande expo login -u {votreusername} -p {votremotdepasse}
+Veuillez au prealable creer un compte sur le site https://expo.io/, puis de vous logger sur une console decommande grace à la commande **expo login -u {votreusername} -p {votremotdepasse}**
 - Android
 	-
 	- Pour recuperer l'APK: **expo build:android -t apk**, et suivez les etapes afin de recuperer votre APK
