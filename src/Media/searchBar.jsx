@@ -11,14 +11,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
+    alignItems: 'center',
     flexWrap: 'wrap',
-    left: '2%',
-    alignItems: 'flex-start',
   },
   item: {
     width: '50%',
-    flex: 1,
-    padding: 5,
   },
   listBook: {
     top: 11,
@@ -32,6 +29,11 @@ const styles = StyleSheet.create({
   lineHr: {
     borderBottomColor: 'rgba(255,255,255, 0.1)',
     borderBottomWidth: 50,
+  },
+  alignImage: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 20,
   },
 });
 
@@ -80,14 +82,12 @@ function SearchBarScreen() {
         }
 
         return (
-          <View key={keymap}>
-            <TouchableHighlight onPress={() => onPressModal(element)}>
-              <View style={styles.item}>
-                <Image
-                  source={imgUrl}
-                  style={styles.imageHome}
-                />
-              </View>
+          <View key={keymap} style={styles.item}>
+            <TouchableHighlight style={styles.alignImage} onPress={() => onPressModal(element)}>
+              <Image
+                source={imgUrl}
+                style={styles.imageHome}
+              />
             </TouchableHighlight>
           </View>
         );

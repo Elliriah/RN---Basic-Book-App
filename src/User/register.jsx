@@ -9,8 +9,8 @@ import imagebg from '../../public/wallpaper.jpg';
 
 const styles = StyleSheet.create({
   input: {
-    width: 395,
-    // height: 55,
+    width: '80%',
+    height: 55,
     backgroundColor: 'white',
     margin: 10,
     padding: 8,
@@ -29,19 +29,21 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     justifyContent: 'center',
   },
-  fixToText: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
   buttonSubmit: {
     alignSelf: 'flex-end',
     position: 'absolute',
     bottom: 35,
   },
   cardOpacity: {
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingBottom: 20,
     marginTop: 20,
+    width: '100%',
     backgroundColor: 'rgba(93,69,59,0.48)',
+  },
+  touchableContainer: {
+    flex: 1,
   },
 });
 
@@ -62,8 +64,9 @@ function RegisterScreen() {
   return (
     <>
       <DismissKeyboard>
-        <View style={styles.container}>
-          <ImageBackground source={imagebg} style={styles.image}>
+        <ImageBackground source={imagebg} style={styles.image}>
+          <View style={styles.container}>
+
             <View style={styles.cardOpacity}>
               <TextInput
                 style={styles.input}
@@ -102,8 +105,9 @@ function RegisterScreen() {
                 />
               </View>
             </View>
-          </ImageBackground>
-        </View>
+
+          </View>
+        </ImageBackground>
       </DismissKeyboard>
     </>
   );

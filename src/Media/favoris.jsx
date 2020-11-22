@@ -10,19 +10,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
+    alignItems: 'center',
     flexWrap: 'wrap',
-    left: '2.5%',
-    alignItems: 'flex-start',
   },
   item: {
     width: '50%',
-    flex: 1,
-    padding: 5,
   },
   listBook: {
     top: 11,
   },
-  styleImage: {
+  imageHome: {
     flex: 2,
     justifyContent: 'space-between',
     width: 170,
@@ -31,6 +28,11 @@ const styles = StyleSheet.create({
   lineHr: {
     borderBottomColor: 'rgba(255,255,255, 0.1)',
     borderBottomWidth: 50,
+  },
+  alignImage: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 20,
   },
 });
 
@@ -70,11 +72,15 @@ function FavorisScreen() {
           imgUrl = { uri: 'https://i.pinimg.com/originals/6f/11/c5/6f11c51b8efb2c82af6c605e9321e766.jpg' };
         }
         return (
-          <View key={keymap}>
-            <TouchableHighlight onPress={() => onPressModal(element.book, element.id)}>
-              <View style={styles.item}>
-                <Image source={imgUrl} style={styles.styleImage} />
-              </View>
+          <View key={keymap} style={styles.item}>
+            <TouchableHighlight
+              style={styles.alignImage}
+              onPress={() => onPressModal(element.book, element.id)}
+            >
+              <Image
+                source={imgUrl}
+                style={styles.imageHome}
+              />
             </TouchableHighlight>
           </View>
         );

@@ -9,7 +9,7 @@ import imagebg from '../../public/wallpaper.jpg';
 
 const styles = StyleSheet.create({
   input: {
-    width: 395,
+    width: '80%',
     height: 55,
     backgroundColor: 'white',
     margin: 10,
@@ -35,8 +35,11 @@ const styles = StyleSheet.create({
     bottom: 35,
   },
   cardOpacity: {
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingBottom: 20,
     marginTop: 20,
+    width: '100%',
     backgroundColor: 'rgba(93,69,59,0.48)',
   },
   touchableContainer: {
@@ -61,8 +64,9 @@ function LoginScreen() {
   return (
     <>
       <DismissKeyboard>
-        <View style={styles.container}>
-          <ImageBackground source={imagebg} style={styles.image}>
+        <ImageBackground source={imagebg} style={styles.image}>
+          <View style={styles.container}>
+
             <View style={styles.cardOpacity}>
               <TextInput
                 style={styles.input}
@@ -90,8 +94,9 @@ function LoginScreen() {
                 />
               </View>
             </View>
-          </ImageBackground>
-        </View>
+
+          </View>
+        </ImageBackground>
       </DismissKeyboard>
     </>
   );
