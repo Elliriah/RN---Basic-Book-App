@@ -9,6 +9,7 @@ import Register from '../User/register';
 import Profil from '../User/profil';
 import Home from '../Media/home';
 import Favoris from '../Media/favoris';
+import SearchBar from '../Media/searchBar';
 
 const Tab = createBottomTabNavigator();
 
@@ -39,6 +40,8 @@ function RouterComponent() {
       iconName = 'ios-heart';
     } else if (route.name === 'Profil') {
       iconName = 'ios-person';
+    } else if (route.name === 'Search') {
+      iconName = 'ios-search';
     }
     return <Ionicons name={iconName} size={25} />;
   }
@@ -79,6 +82,7 @@ function RouterComponent() {
       >
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Favoris" component={Favoris} />
+        <Tab.Screen name="Search" component={SearchBar} />
         <Tab.Screen name="Profil" component={Profil} />
       </Tab.Navigator>
     </NavigationContainer>
