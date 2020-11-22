@@ -20,6 +20,7 @@ export default function ImagePickerComponent() {
         if (status !== 'granted') {
           alert("Désolé, nous avons besoin de l'autorisation permettant d'utiliser la camera pour utiliser ça");
         }
+        
         const statusCamera = await ImagePicker.requestCameraPermissionsAsync();
         if (statusCamera.status !== 'granted') {
           alert("Désolé, nous avons besoin de l'autorisation permettant d'utiliser la camera pour utiliser ça");
