@@ -150,7 +150,14 @@ function BookDialog(props) {
 BookDialog.propTypes = {
   display: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  data: PropTypes.objectOf(PropTypes.object()).isRequired,
+  data: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    img: PropTypes.shape({
+      url: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
   idFavori: PropTypes.number,
 };
 
