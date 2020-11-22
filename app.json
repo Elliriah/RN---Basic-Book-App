@@ -9,9 +9,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/book.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/book.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -28,12 +28,6 @@
     "android": {
       "package": "com.book.book"
     },
-    "extra": {
-        "test": {
-          "message": "I am a message"
-        },
-        "FIRE_BASE": {}
-    },
-    "description": ""
+    "description": "Une application permettant de lister des livres, ainsi que leurs titres, leurs description, et la possibilité de les ajouter en Favoris. Avec un système d'authentification, d'enregistrement, et un profil accessible sur l'application."
   }
 }

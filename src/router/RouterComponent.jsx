@@ -33,10 +33,12 @@ function RouterComponent() {
 
   function IconApp({ route }) {
     let iconName;
-    if (route.name === 'Login') {
-      iconName = 'ios-log-in';
-    } else if (route.name === 'Register') {
-      iconName = 'ios-log-out';
+    if (route.name === 'Home') {
+      iconName = 'ios-home';
+    } else if (route.name === 'Favoris') {
+      iconName = 'ios-heart';
+    } else if (route.name === 'Profil') {
+      iconName = 'ios-person';
     }
     return <Ionicons name={iconName} size={25} />;
   }
