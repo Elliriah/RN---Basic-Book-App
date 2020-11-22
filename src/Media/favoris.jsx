@@ -5,7 +5,7 @@ import {
 // import { useNavigation } from '@react-navigation/native';
 import { Searchbar } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
-import BookDialog from './bookDialog';
+import BookDialog from './component/bookDialog';
 import * as Actions from './store/actions';
 
 const styles = StyleSheet.create({

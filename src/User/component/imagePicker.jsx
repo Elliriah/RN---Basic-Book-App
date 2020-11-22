@@ -20,18 +20,24 @@ export default function ImagePickerComponent() {
         if (status !== 'granted') {
           alert("Désolé, nous avons besoin de l'autorisation permettant d'utiliser la camera pour utiliser ça");
         }
+        const statusCamera = await ImagePicker.requestCameraPermissionsAsync();
+        if (statusCamera.status !== 'granted') {
+          alert("Désolé, nous avons besoin de l'autorisation permettant d'utiliser la camera pour utiliser ça");
+        }
       }
     })();
   }, []);
 
   const pickImage = async () => {
-    const result = await ImagePicker.launchImageLibraryAsync({
+
+
+    //const result = await ImagePicker.launchImageLibraryAsync({
+    const result = await ImagePicker.launchCameraAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
     });
-    console.log('RESULT===', result);
     if (result.cancelled === true) {
       return;
     }
@@ -57,10 +63,6 @@ export default function ImagePickerComponent() {
       .catch((err) => {
         console.log(err);
       });
-
-    if (!result.cancelled) {
-      setImage(result.uri);
-    }
   };
 
   return (

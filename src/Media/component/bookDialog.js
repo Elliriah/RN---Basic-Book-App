@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, ScrollView, StyleSheet, Text, View, Image, TouchableHighlight} from "react-native";
 import Modal, { ModalContent } from 'react-native-modal';
 import { useDispatch, useSelector } from 'react-redux';
-import * as Actions from './store/actions';
+import * as Actions from '../store/actions';
 
 const styles = StyleSheet.create({
   input: {
@@ -116,7 +116,7 @@ function BookDialog(props) {
             <View style={styles.bookCard}>
             <TouchableHighlight
           onPress={() => {props.onClose()}}>
-          <Image source={require('../../public/icon/close.png')} style = {styles.favorite_image} />          
+          <Image source={require('../../../public/icon/close.png')} style = {styles.favorite_image} />          
           </TouchableHighlight>
           <View style={styles.viewText}>
             <Text style={styles.textTitre}>{props.data.title}</Text>
@@ -124,7 +124,7 @@ function BookDialog(props) {
             <TouchableHighlight
           style={styles.favorite_container}
           onPress={() => {addFavoris()}}>
-          <Image source={require('../../public/icon/favorite.png')} style = {styles.favorite_image} />
+          <Image source={require('../../../public/icon/favorite.png')} style = {styles.favorite_image} />
           </TouchableHighlight>
           <View style={styles.viewImage}>
             <Image source={{uri: props.data.img.url}} style={styles.imageBook}/>
