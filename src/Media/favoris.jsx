@@ -13,22 +13,23 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    alignItems: 'flex-start', // if you want to fill rows left to right
+    left: '0.8%',
+    top: '5%',
+    alignItems: 'flex-start' // if you want to fill rows left to right
   },
   item: {
     width: '50%', // is 50% of container width
-  },
-  searchbarSize: {
-    width: 600,
-    top: 30,
-    marginBottom: 20,
+    flex:1,
+    padding:5
   },
   listBook: {
     top: 11,
   },
   styleImage : {
-    width: 135, 
-    height: 170
+    flex: 2,
+    justifyContent: 'space-between',
+    width: 170,
+    height: 190
   }
 });
 
@@ -90,12 +91,7 @@ function FavorisScreen() {
     <>
       { (modalbool === true)
         ? <BookDialog display={modalbool} onClose={onCloseModal} data={data} /> : null }
-      <Searchbar
-        style={[styles.searchbarSize]}
-        placeholder="Search"
-        onChangeText={onChangeSearch}
-        value={searchQuery}
-      />
+
       <ScrollView>
         <View style={[styles.listBook]}>
           <View style={[styles.container]}>

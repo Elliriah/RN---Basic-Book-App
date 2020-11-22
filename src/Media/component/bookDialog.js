@@ -45,15 +45,9 @@ const styles = StyleSheet.create({
   bookCard: {
     // backgroundColor: "blue"
   },
-  favorite_container: {
-    alignItems: 'center', // Alignement des components enfants sur l'axe secondaire, X ici
-  },
-  favorite_image: {
-    width: 40,
-    height: 40,
-    left: 50,
-    top: 40,
-    zIndex: 10
+  close: {
+    zIndex: 10,
+    left: "90%"
   },
   viewText : {
     width: "100%", 
@@ -97,7 +91,6 @@ const styles = StyleSheet.create({
 
 function BookDialog(props) {
   const dispatch = useDispatch();
-  const bookOne = { uri: "https://i.pinimg.com/originals/6f/11/c5/6f11c51b8efb2c82af6c605e9321e766.jpg" };
   const user = useSelector((state) => state.userReducer.user);
   
   const addFavoris = (() => {
@@ -115,17 +108,18 @@ function BookDialog(props) {
           <View style={styles.cardOpacity}>
             <View style={styles.bookCard}>
             <TouchableHighlight
+              underlayColor=""
           onPress={() => {props.onClose()}}>
-          <Image source={require('../../../public/icon/close.png')} style = {styles.favorite_image} />          
+          <Image source={require('../../../public/icon/close.png')} style = {styles.close} />          
           </TouchableHighlight>
           <View style={styles.viewText}>
             <Text style={styles.textTitre}>{props.data.title}</Text>
           </View>
-            <TouchableHighlight
+            {/* <TouchableHighlight
           style={styles.favorite_container}
           onPress={() => {addFavoris()}}>
           <Image source={require('../../../public/icon/favorite.png')} style = {styles.favorite_image} />
-          </TouchableHighlight>
+          </TouchableHighlight> */}
           <View style={styles.viewImage}>
             <Image source={{uri: props.data.img.url}} style={styles.imageBook}/>
             <Button title="Favoris " />

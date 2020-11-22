@@ -13,17 +13,14 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    left: '3%',
-    top: '4%',
-    alignItems: 'flex-start', // if you want to fill rows left to right
+    left: '2%',
+    top: '5%',
+    alignItems: 'flex-start'// if you want to fill rows left to right
   },
   item: {
     width: '50%', // is 50% of container width
-  },
-  searchbarSize: {
-    width: 600,
-    top: 30,
-    marginBottom: 20,
+    flex:1,
+    padding:5
   },
   listBook: {
     top: 11,
@@ -31,9 +28,6 @@ const styles = StyleSheet.create({
   imageHome : {
     flex: 2,
     justifyContent: 'space-between',
-    padding: 10,
-    borderWidth: 3,
-    borderColor: 'black',
     width: 170,
     height: 190
   }
@@ -42,8 +36,6 @@ const styles = StyleSheet.create({
 function HomeScreen() {
   const dispatch = useDispatch();
   // const navigation = useNavigation();
-  const [searchQuery, setSearchQuery] = React.useState('');
-  const onChangeSearch = (query) => setSearchQuery(query);
   const [modalbool, setModelbool] = React.useState(false);
   const [data, setData] = React.useState(null);
   const token = useSelector((state) => state.userReducer.user.token);
@@ -76,7 +68,7 @@ function HomeScreen() {
         return (
           <View key={keymap}>
             <TouchableHighlight onPress={() => onPressModal(element)}>
-              <View>
+              <View style={styles.item}>
                 <Image
                   source={imgUrl}
                   style={styles.imageHome}
@@ -95,12 +87,7 @@ function HomeScreen() {
     <>
       { (modalbool === true)
         ? <BookDialog display={modalbool} onClose={onCloseModal} data={data} /> : null }
-      <Searchbar
-        style={[styles.searchbarSize]}
-        placeholder="Search"
-        onChangeText={onChangeSearch}
-        value={searchQuery}
-      />
+
       <ScrollView>
         <View>
           <View style={[styles.container]}>
