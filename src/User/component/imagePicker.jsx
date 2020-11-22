@@ -5,6 +5,7 @@ import {
 import * as ImagePicker from 'expo-image-picker';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import { showMessage } from 'react-native-flash-message';
 import * as Actions from '../store/actions';
 
 export default function ImagePickerComponent() {
@@ -48,9 +49,16 @@ export default function ImagePickerComponent() {
       })
       .then(() => {
         dispatch(Actions.getUserInfo(user.token));
+        showMessage({
+          message: "L'image de profil à bien été changé.",
+          type: 'success',
+        });
       })
       .catch(() => {
-
+        showMessage({
+          message: "L'image de profil reste inchangé.",
+          type: 'info',
+        });
       });
   };
 
@@ -81,9 +89,16 @@ export default function ImagePickerComponent() {
       })
       .then(() => {
         dispatch(Actions.getUserInfo(user.token));
+        showMessage({
+          message: "L'image de profil à bien été changé.",
+          type: 'success',
+        });
       })
       .catch(() => {
-
+        showMessage({
+          message: "L'image de profil reste inchangé.",
+          type: 'info',
+        });
       });
   };
 

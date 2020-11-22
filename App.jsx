@@ -6,10 +6,12 @@ import { store, persistor } from './src/store/configStore';
 
 export default function App() {
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <RouterComponent />
-      </PersistGate>
-    </Provider>
+    <>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <RouterComponent />
+        </PersistGate>
+      </Provider>
+    </>
   );
 }

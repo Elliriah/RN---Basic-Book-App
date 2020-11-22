@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { showMessage } from 'react-native-flash-message';
 
 export const AUTH_USER = '[USER] AUTH_USER';
 export const REGISTER_USER = '[USER] REGISTER_USER';
@@ -16,7 +17,15 @@ export const authUser = (payload) => {
         token: response.data.jwt,
         userInfo: response.data,
       });
+      showMessage({
+        message: `Utilisateur ${response.data.user.username} connecté.`,
+        type: 'success',
+      });
     }).catch(() => {
+      showMessage({
+        message: "Echec de l'authentification.",
+        type: 'warning',
+      });
       dispatch({
         type: AUTH_USER,
         payload: false,
@@ -29,6 +38,10 @@ export const logoutUser = () => (dispatch) => {
   dispatch({
     type: LOGOUT_USER,
     payload: false,
+  });
+  showMessage({
+    message: 'Utilisateur déconnecté.',
+    type: 'success',
   });
 };
 
@@ -63,10 +76,18 @@ export const registerUser = (payload) => {
         token: response.data.jwt,
         userInfo: response.data,
       });
+      showMessage({
+        message: `Utilisateur ${response.data.username} crée et connecté.`,
+        type: 'success',
+      });
     }).catch(() => {
       dispatch({
         type: AUTH_USER,
         payload: false,
+      });
+      showMessage({
+        message: 'Echec de la creation du compte.',
+        type: 'warning',
       });
     });
   };

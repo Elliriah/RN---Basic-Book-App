@@ -109,41 +109,39 @@ function BookDialog(props) {
     return null;
   }
   return (
-    <View>
-      <Modal isVisible={display} onBackdropPress={() => { onClose(); }}>
-        <ScrollView>
+    <Modal isVisible={display} onBackdropPress={() => { onClose(); }}>
+      <ScrollView>
 
-          <View style={styles.cardOpacity}>
-            <View style={styles.bookCard}>
-              <TouchableHighlight
-                underlayColor=""
-                onPress={() => { onClose(); }}
-              >
-                <Image source={closeImg} style={styles.close} />
-              </TouchableHighlight>
-              <View style={styles.viewText}>
-                <Text style={styles.textTitre}>{data.title}</Text>
-              </View>
-              <View style={styles.viewImage}>
-                <Image source={{ uri: data.img.url }} style={styles.imageBook} />
-                {(!idFavori) ? <Button title="Ajouter Favoris" onPress={() => { addFavoris(); }} />
-                  : <Button title="Suprrimer Favoris " onPress={() => { deleteFavoris(); }} /> }
-              </View>
-              <View
-                style={styles.lineHr}
-              />
-              <View style={styles.viewOne}>
-                <View style={styles.viewDescription}>
-                  <Text style={styles.textDescription}>
-                    {data.description}
-                  </Text>
-                </View>
+        <View style={styles.cardOpacity}>
+          <View style={styles.bookCard}>
+            <TouchableHighlight
+              underlayColor=""
+              onPress={() => { onClose(); }}
+            >
+              <Image source={closeImg} style={styles.close} />
+            </TouchableHighlight>
+            <View style={styles.viewText}>
+              <Text style={styles.textTitre}>{data.title}</Text>
+            </View>
+            <View style={styles.viewImage}>
+              <Image source={{ uri: data.img.url }} style={styles.imageBook} />
+              {(!idFavori) ? <Button title="Ajouter Favoris" onPress={() => { addFavoris(); }} />
+                : <Button title="Suprrimer Favoris " onPress={() => { deleteFavoris(); }} /> }
+            </View>
+            <View
+              style={styles.lineHr}
+            />
+            <View style={styles.viewOne}>
+              <View style={styles.viewDescription}>
+                <Text style={styles.textDescription}>
+                  {data.description}
+                </Text>
               </View>
             </View>
           </View>
-        </ScrollView>
-      </Modal>
-    </View>
+        </View>
+      </ScrollView>
+    </Modal>
   );
 }
 

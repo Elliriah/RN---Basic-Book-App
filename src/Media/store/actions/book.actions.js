@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { showMessage } from 'react-native-flash-message';
 
 export const GET_BOOKS = '[BOOK] GET BOOKS';
 export const GET_FAVORIS = '[FAVORIS] GET FAVORIS';
@@ -19,6 +20,10 @@ export const getFavoris = (payload, idUser) => {
         payload: response.data,
       });
     }).catch(() => {
+      showMessage({
+        message: 'Aucun Favoris trouvé',
+        type: 'info',
+      });
       dispatch({
         type: GET_FAVORIS,
         payload: null,
@@ -41,7 +46,15 @@ export const deleteFavoris = (payload, idFavoris, idUser) => {
       dispatch({
         type: DELETE_FAVORIS,
       });
+      showMessage({
+        message: 'Le favoris à bien été supprimé.',
+        type: 'success',
+      });
     }).catch(() => {
+      showMessage({
+        message: 'Echec de la suppression du favoris.',
+        type: 'warning',
+      });
       dispatch({
         type: DELETE_FAVORIS,
       });
@@ -70,7 +83,15 @@ export const addFavoris = (payload, idUser, idBook) => {
         type: ADD_FAVORIS,
         payload: response.data,
       });
+      showMessage({
+        message: 'Le favoris à bien été ajouté.',
+        type: 'success',
+      });
     }).catch(() => {
+      showMessage({
+        message: "Le favoris n'a pas pu être ajouté ou existe déjà.",
+        type: 'info',
+      });
       dispatch({
         type: ADD_FAVORIS,
         payload: null,

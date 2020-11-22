@@ -4,6 +4,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import {
+  View,
+} from 'react-native';
+import FlashMessage from 'react-native-flash-message';
 import Login from '../User/login';
 import Register from '../User/register';
 import Profil from '../User/profil';
@@ -97,7 +101,10 @@ function RouterComponent() {
 
   return (
     <>
-      {routerTabs()}
+      <View style={{ flex: 1 }}>
+        {routerTabs()}
+        <FlashMessage position="top" />
+      </View>
     </>
   );
 }
