@@ -77,7 +77,7 @@ export const registerUser = (payload) => {
         userInfo: response.data,
       });
       showMessage({
-        message: `Utilisateur ${response.data.username} crée et connecté.`,
+        message: `Utilisateur ${response.data.user.username} crée et connecté.`,
         type: 'success',
       });
     }).catch(() => {
