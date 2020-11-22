@@ -13,6 +13,12 @@ const bookReducer = (state = initialState, action) => {
         ...state,
       };
     }
+    case Actions.DELETE_FAVORIS:
+    {
+      return {
+        ...state,
+      };
+    }
     case Actions.GET_FAVORIS:
     {
       return {

@@ -9,7 +9,6 @@ import * as Actions from '../store/actions';
 
 export default function ImagePickerComponent() {
   const dispatch = useDispatch();
-  const [image, setImage] = useState(null);
   const user = useSelector((state) => state.userReducer.user);
   const idUser = user.userInfo.user.id;
 
@@ -20,7 +19,6 @@ export default function ImagePickerComponent() {
         if (status !== 'granted') {
           alert("Désolé, nous avons besoin de l'autorisation permettant d'utiliser la camera pour utiliser ça");
         }
-        
         const statusCamera = await ImagePicker.requestCameraPermissionsAsync();
         if (statusCamera.status !== 'granted') {
           alert("Désolé, nous avons besoin de l'autorisation permettant d'utiliser la camera pour utiliser ça");
@@ -29,10 +27,7 @@ export default function ImagePickerComponent() {
     })();
   }, []);
 
-  const pickImage = async () => {
-
-
-    //const result = await ImagePicker.launchImageLibraryAsync({
+  const takePhoto = async () => {
     const result = await ImagePicker.launchCameraAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
@@ -58,18 +53,52 @@ export default function ImagePickerComponent() {
       .post('https://dark-nightmare-23481.herokuapp.com/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${user.token}` },
       })
-      .then((res) => {
+      .then(() => {
         dispatch(Actions.getUserInfo(user.token));
       })
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  const pickImage = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+    if (result.cancelled === true) {
+      return;
+    }
+    const formData = new FormData();
+    const localUri = result.uri;
+    const filename = localUri.split('/').pop();
+    const match = /\.(\w+)$/.exec(filename);
+    const type = match ? `image/${match[1]}` : 'image';
+
+    formData.append('files', { uri: result.uri, name: 'yoloss', type });
+    formData.append('ref', 'user');
+    formData.append('refId', idUser);
+    formData.append('field', 'avatar');
+    formData.append('source', 'users-permissions');
+    console.log('Acgtions===', Actions);
+    axios
+      .post('https://dark-nightmare-23481.herokuapp.com/upload', formData, {
+        headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${user.token}` },
+      })
+      .then(() => {
+        dispatch(Actions.getUserInfo(user.token));
+      })
+      .catch(() => {
+        return;
+      });
   };
 
   return (
     <View style={{ }}>
-      <Button title="Modifier " onPress={pickImage} />
-      {/* {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />} */}
+      <Button title="Modifier" onPress={pickImage} />
+      <Button title="Prendre une Photo" onPress={takePhoto} />
     </View>
   );
 }

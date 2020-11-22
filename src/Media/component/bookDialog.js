@@ -3,6 +3,7 @@ import { Button, ScrollView, StyleSheet, Text, View, Image, TouchableHighlight} 
 import Modal, { ModalContent } from 'react-native-modal';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Actions from '../store/actions';
+import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
   input: {
@@ -94,9 +95,14 @@ function BookDialog(props) {
   const user = useSelector((state) => state.userReducer.user);
   
   const addFavoris = (() => {
-    dispatch(Actions.addFavoris(user.token, user.userInfo.user.id, props.data.id))
+    dispatch(Actions.addFavoris(user.token, user.userInfo.user.id, props.data.id));
+    props.onClose()
   });
 
+  const deleteFavoris = (() => {
+    dispatch(Actions.deleteFavoris(user.token, props.idFavori, user.userInfo.user.id));
+    props.onClose()
+  });
   if (props.data === null) {
     return null 
   } else {
@@ -122,8 +128,8 @@ function BookDialog(props) {
           </TouchableHighlight> */}
           <View style={styles.viewImage}>
             <Image source={{uri: props.data.img.url}} style={styles.imageBook}/>
-            <Button title="Favoris " />
-            <Button title="Suprrimer Favoris " />
+            {(!props.idFavori) ? <Button title="Ajouter Favoris" onPress={() => { addFavoris() }} /> : 
+            <Button title="Suprrimer Favoris " onPress={() => { deleteFavoris() }} /> }
           </View>
             <View
               style={styles.lineHr}/>
@@ -141,6 +147,13 @@ function BookDialog(props) {
       </View>
     )
   }
+}
+
+BookDialog.propTypes = {
+    display: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired,
+    data: PropTypes.object.isRequired,
+    idFavori: PropTypes.number
 }
 
 export default BookDialog;

@@ -38,6 +38,7 @@ function FavorisScreen() {
   // const navigation = useNavigation();
   const [searchQuery, setSearchQuery] = React.useState('');
   const onChangeSearch = (query) => setSearchQuery(query);
+  const [idFavori, setIdFavori] = React.useState(null);
   const [modalbool, setModelbool] = React.useState(false);
   const [data, setData] = React.useState(null);
   const token = useSelector((state) => state.userReducer.user.token);
@@ -50,8 +51,9 @@ function FavorisScreen() {
     dispatch(Actions.getFavoris(token, idUser));
   }, [token, idUser]);
 
-  const onPressModal = (element) => {
+  const onPressModal = (element, idFavoris) => {
     setData(element);
+    setIdFavori(idFavoris);
     setModelbool(true);
   };
 
@@ -73,7 +75,7 @@ function FavorisScreen() {
         }
         return (
           <View key={keymap}>
-            <TouchableHighlight onPress={() => onPressModal(element.book)}>
+            <TouchableHighlight onPress={() => onPressModal(element.book, element.id)}>
               <View style={styles.item}>
                 <Image source={imgUrl} style={styles.styleImage} />
               </View>
@@ -90,7 +92,7 @@ function FavorisScreen() {
   return (
     <>
       { (modalbool === true)
-        ? <BookDialog display={modalbool} onClose={onCloseModal} data={data} /> : null }
+        ? <BookDialog display={modalbool} onClose={onCloseModal} data={data} idFavori={idFavori} /> : null }
 
       <ScrollView>
         <View style={[styles.listBook]}>
