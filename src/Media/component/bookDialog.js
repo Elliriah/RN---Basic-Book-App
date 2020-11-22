@@ -121,15 +121,10 @@ function BookDialog(props) {
           <View style={styles.viewText}>
             <Text style={styles.textTitre}>{props.data.title}</Text>
           </View>
-            {/* <TouchableHighlight
-          style={styles.favorite_container}
-          onPress={() => {addFavoris()}}>
-          <Image source={require('../../../public/icon/favorite.png')} style = {styles.favorite_image} />
-          </TouchableHighlight> */}
           <View style={styles.viewImage}>
             <Image source={{uri: props.data.img.url}} style={styles.imageBook}/>
             {(!props.idFavori) ? <Button title="Ajouter Favoris" onPress={() => { addFavoris() }} /> : 
-            <Button title="Suprrimer Favoris " onPress={() => { deleteFavoris() }} /> }
+            <Button title="Suprimer Favoris " onPress={() => { deleteFavoris() }} /> }
           </View>
             <View
               style={styles.lineHr}/>

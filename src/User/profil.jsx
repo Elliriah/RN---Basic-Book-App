@@ -9,7 +9,6 @@ import ImagePicker from './component/imagePicker';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
     textAlign: 'center',
@@ -44,6 +43,10 @@ const styles = StyleSheet.create({
   },
   viewButton : {
     marginBottom: '100%'
+  },
+  lineHr : {
+    borderBottomColor: 'rgba(255,255,255, 0.1)',
+    borderBottomWidth: 30
   }
 });
 
@@ -66,6 +69,7 @@ function ProfilScreen() {
   console.log(avatar);
   return (
     <>
+    <View style={styles.lineHr}/>
       <View style={[styles.container]}>
       <ImageBackground source={imagebg}  style={styles.container}>
         <View style={[styles.imageProfil]}>
@@ -79,7 +83,6 @@ function ProfilScreen() {
 
           </Avatar>
           <ImagePicker />
-
         </View>
         <View style={styles.viewInput}>
           <TextInput

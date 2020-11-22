@@ -13,9 +13,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    left: '0.8%',
-    top: '5%',
-    alignItems: 'flex-start' // if you want to fill rows left to right
+    left: '2.5%',
+    alignItems: 'flex-start'// if you want to fill rows left to right
   },
   item: {
     width: '50%', // is 50% of container width
@@ -30,6 +29,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: 170,
     height: 190
+  },
+  lineHr : {
+    borderBottomColor: 'rgba(255,255,255, 0.1)',
+    borderBottomWidth: 50,
   }
 });
 
@@ -93,7 +96,7 @@ function FavorisScreen() {
     <>
       { (modalbool === true)
         ? <BookDialog display={modalbool} onClose={onCloseModal} data={data} idFavori={idFavori} /> : null }
-
+<View style={styles.lineHr}/>
       <ScrollView>
         <View style={[styles.listBook]}>
           <View style={[styles.container]}>
