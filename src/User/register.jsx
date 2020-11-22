@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
-  ImageBackground, View, StyleSheet, Button, TextInput,
+  ImageBackground, View, StyleSheet, Button, TextInput, TouchableWithoutFeedback, Keyboard,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import * as Actions from './store/actions';
@@ -46,51 +47,64 @@ const styles = StyleSheet.create({
 
 function RegisterScreen() {
   const dispatch = useDispatch();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
+  const DismissKeyboard = ({ children }) => (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      {children}
+    </TouchableWithoutFeedback>
+  );
+  DismissKeyboard.propTypes = {
+    children: PropTypes.node.isRequired,
+  };
+
+  let username = '';
+  let password = '';
+  let email = '';
   return (
     <>
-      <View style={styles.container}>
-        <ImageBackground source={imagebg} style={styles.image}>
-          <View style={styles.cardOpacity}>
-            <TextInput
-              style={styles.input}
-              placeholder="Username"
-              autoCapitalize="none"
-              placeholderTextColor="black"
-              onChangeText={(value) => setUsername(value)}
-              defaultValue={username}
-              autoCompleteType="username"
-            />
-            <TextInput
-              style={styles.input}
-              placeholder="Email"
-              autoCompleteType="email"
-              autoCapitalize="none"
-              placeholderTextColor="black"
-              onChangeText={(value) => setEmail(value)}
-              defaultValue={email}
-            />
-            <TextInput
-              style={styles.input}
-              autoCompleteType="password"
-              placeholder="Password"
-              secureTextEntry
-              autoCapitalize="none"
-              placeholderTextColor="black"
-              onChangeText={(value) => setPassword(value)}
-              defaultValue={password}
-            />
-            <Button
-              title="S'inscrire "
-              color="#5D453B"
-              onPress={() => dispatch(Actions.registerUser({ username, email, password }))}
-              type="outline"
-            />
-          </View>
-        </ImageBackground>
-      </View>
+      <DismissKeyboard>
+        <View style={styles.container}>
+          <ImageBackground source={imagebg} style={styles.image}>
+            <View style={styles.cardOpacity}>
+              <TextInput
+                style={styles.input}
+                placeholder="Username"
+                autoCapitalize="none"
+                placeholderTextColor="black"
+                onChangeText={(value) => { username = value; }}
+                defaultValue={username}
+                autoCompleteType="username"
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Email"
+                autoCompleteType="email"
+                autoCapitalize="none"
+                placeholderTextColor="black"
+                onChangeText={(value) => { email = value; }}
+                defaultValue={email}
+              />
+              <TextInput
+                style={styles.input}
+                autoCompleteType="password"
+                placeholder="Password"
+                secureTextEntry
+                autoCapitalize="none"
+                placeholderTextColor="black"
+                onChangeText={(value) => { password = value; }}
+                defaultValue={password}
+              />
+              <View style={[{ width: '90%', margin: 15 }]}>
+                <Button
+                  title="S'inscrire "
+                  color="#5D453B"
+                  onPress={() => dispatch(Actions.registerUser({ username, email, password }))}
+                  type="outline"
+                />
+              </View>
+            </View>
+          </ImageBackground>
+        </View>
+      </DismissKeyboard>
     </>
   );
 }

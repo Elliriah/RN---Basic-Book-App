@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
-  ImageBackground, View, StyleSheet, Button, TextInput,
+  ImageBackground, View, StyleSheet, Button, TextInput, TouchableWithoutFeedback, Keyboard,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import * as Actions from './store/actions';
@@ -38,43 +39,60 @@ const styles = StyleSheet.create({
     marginTop: 20,
     backgroundColor: 'rgba(93,69,59,0.48)',
   },
+  touchableContainer: {
+    flex: 1,
+  },
 });
 
 function LoginScreen() {
+  const DismissKeyboard = ({ children }) => (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      {children}
+    </TouchableWithoutFeedback>
+  );
+
+  DismissKeyboard.propTypes = {
+    children: PropTypes.node.isRequired,
+  };
+
   const dispatch = useDispatch();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  let username = '';
+  let password = '';
   return (
     <>
-      <View style={styles.container}>
-        <ImageBackground source={imagebg} style={styles.image}>
-          <View style={styles.cardOpacity}>
-            <TextInput
-              style={styles.input}
-              placeholder="Username"
-              autoCapitalize="none"
-              placeholderTextColor="black"
-              onChangeText={(value) => setUsername(value)}
-              defaultValue={username}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder="Password"
-              secureTextEntry
-              autoCapitalize="none"
-              placeholderTextColor="black"
-              onChangeText={(value) => setPassword(value)}
-              defaultValue={password}
-            />
-            <Button
-              title="Se connecter "
-              color="#5D453B"
-              onPress={() => dispatch(Actions.authUser({ identifier: username, password }))}
-              type="outline"
-            />
-          </View>
-        </ImageBackground>
-      </View>
+      <DismissKeyboard>
+        <View style={styles.container}>
+          <ImageBackground source={imagebg} style={styles.image}>
+            <View style={styles.cardOpacity}>
+              <TextInput
+                style={styles.input}
+                placeholder="Username"
+                autoCapitalize="none"
+                placeholderTextColor="black"
+                onChangeText={(value) => { username = value; }}
+                defaultValue={username}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Password"
+                secureTextEntry
+                autoCapitalize="none"
+                placeholderTextColor="black"
+                onChangeText={(value) => { password = value; }}
+                defaultValue={password}
+              />
+              <View style={[{ width: '90%', margin: 15 }]}>
+                <Button
+                  title="Se connecter "
+                  color="#5D453B"
+                  onPress={() => dispatch(Actions.authUser({ identifier: username, password }))}
+                  type="outline"
+                />
+              </View>
+            </View>
+          </ImageBackground>
+        </View>
+      </DismissKeyboard>
     </>
   );
 }
