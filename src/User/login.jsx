@@ -50,16 +50,6 @@ function LoginScreen() {
     <>
       <View style={styles.container}>
         <ImageBackground source={imagebg} style={styles.image}>
-          <View w style={styles.fixToText}>
-            <View style={[styles.buttonSubmit]}>
-              <Button
-                title="S'inscrire "
-                color="#5D453B"
-                style={styles.buttonSubmit}
-                onPress={() => navigation.navigate('Register')}
-              />
-            </View>
-          </View>
           <View style={styles.cardOpacity}>
             <TextInput
               style={styles.input}

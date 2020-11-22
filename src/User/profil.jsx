@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
     left: '20%'
   },
   viewButton : {
-    marginBottom: '100%'
+    marginBottom: '100%',
+    right: 30
   },
   lineHr : {
     borderBottomColor: 'rgba(255,255,255, 0.1)',
@@ -100,7 +101,7 @@ function ProfilScreen() {
           <View style={styles.viewButton}>
             <Button
               title="Se deconnecter  "
-              backgroundColor="black"
+              color="#ff5c5c"
               onPress={() => dispatch(Actions.logoutUser())}
               type="outline"
             />
