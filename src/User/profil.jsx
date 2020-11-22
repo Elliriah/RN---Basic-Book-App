@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Button } from 'react-native';
+import { View, StyleSheet, Button, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Avatar, Accessory } from 'react-native-elements';
 import { TextInput } from 'react-native-paper';
@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
 function ProfilScreen() {
   const [email, setText] = React.useState('');
   const navigation = useNavigation();
+  const imagebg = require('../../public/mainWallpaper.jpg');
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userReducer.user);
 
@@ -66,6 +67,7 @@ function ProfilScreen() {
   return (
     <>
       <View style={[styles.container]}>
+      <ImageBackground source={imagebg}  style={styles.container}>
         <View style={[styles.imageProfil]}>
           <Avatar
             size="xlarge"
@@ -101,6 +103,7 @@ function ProfilScreen() {
             />
           </View>
         </View>
+        </ImageBackground>
       </View>
     </>
   );

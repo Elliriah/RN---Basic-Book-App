@@ -98,7 +98,7 @@ export default function ImagePickerComponent() {
   return (
     <View style={{ }}>
       <Button title="Modifier" onPress={pickImage} />
-      <Button title="Prendre une Photo" onPress={takePhoto} />
+      <Button title="Prendre une Photo " onPress={takePhoto} />
     </View>
   );
 }

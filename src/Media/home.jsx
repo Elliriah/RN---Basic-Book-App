@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     left: '2%',
-    top: '5%',
     alignItems: 'flex-start'// if you want to fill rows left to right
   },
   item: {
@@ -30,6 +29,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: 170,
     height: 190
+  },
+  lineHr : {
+    borderBottomColor: 'rgba(255,255,255, 0.1)',
+    borderBottomWidth: 50
   }
 });
 
@@ -87,7 +90,7 @@ function HomeScreen() {
     <>
       { (modalbool === true)
         ? <BookDialog display={modalbool} onClose={onCloseModal} data={data} /> : null }
-
+<View style={styles.lineHr}/>
       <ScrollView>
         <View>
           <View style={[styles.container]}>
