@@ -32,4 +32,5 @@ Veuillez au prealable creer un compte sur le site https://expo.io/, puis de vous
 
 ## Lien du Projet
 - Page Expo: https://expo.io/@shirohire/projects/RN1-Book
-- Dernière Release de l'APK: 
+- Dernière Release de l'APK: https://expo.io/artifacts/18f209f5-d8c0-4b42-99b1-4c395d6933ee
+
