@@ -2,7 +2,7 @@
 
 # Description du Projet
 
-Cette application  permet, après authentification &/ou creation du compte, de visualiser un certains nombre de livre et leurs descriptions, de les ajouter en Favoris et de visualiser son profil utilisateur, cette application à été realisé en React-Native dans le cadre d'un projet scolaire.
+Cette application  permet, après authentification &/ou creation du compte, de visualiser un certains nombre de livre et leurs descriptions, de les ajouter en Favoris et de visualiser son profil utilisateur, cette application à été realisé en React-Native dans le cadre d'un projet scolaire à temps limité 
 
 # Prérequis
 
